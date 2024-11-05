@@ -9,7 +9,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg}']
+        globPatterns: ['**/*.{js,jsx,css,html,ico,png,svg}']
       },
       includeAssets: ['favicon.svg', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
@@ -31,6 +31,9 @@ export default defineConfig({
         ]
       }
     })
-  ]
+  ],
+  server: {
+    host: true,
+  }
 });
 

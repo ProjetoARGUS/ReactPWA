@@ -1,0 +1,17 @@
+.splash-screen-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.splash-screen-page a{
+    text-align: center;
+}
+
+@media(max-width: 1400px){
+    .splash-screen-page img{
+        width: 80%;
+    } 
+}

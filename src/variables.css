@@ -1,0 +1,8 @@
+:root{
+    --font-color: rgb(25, 25, 25);
+    --main-font-family: "Roboto Condensed", sans-serif;
+    --main-color: -webkit-linear-gradient(0deg, #ff8000, #f25656);
+    --foreground-color: -webkit-linear-gradient(0deg, #3cb6e9, #005a9c);
+    --background-main-color: white;
+    --background-foreground-color: #eff1f5;
+}
