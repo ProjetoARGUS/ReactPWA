@@ -6,10 +6,10 @@
   font-family: var(--main-font-family);
   font-optical-sizing: auto;
   font-style: normal;
-  color: var(--font-color);
+  color: var(--main-color);
 }
 
 a{
   text-decoration: none;
-  color: var(--font-color);
+  color: var(--main-color);
 }

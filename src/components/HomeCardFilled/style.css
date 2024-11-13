@@ -1,0 +1,65 @@
+@import url(../../variables.css);
+@import url(../../font-styles.css);
+
+/* Estilo do cartão/botão */
+.card-filled-container {
+    width: 300px;
+    padding: 20px 0px;
+    border: 2px solid var(--medium-blue);
+    border-radius: 15px;
+    background-color: var(--medium-blue);
+    display: flex;
+    justify-content: flex-start;
+    text-align: center;
+}
+
+/* Ícone de fundo */
+.card-filled-container  .icon-container {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background-color: var(--main-color);
+    border-radius: 15px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    z-index: 1;
+}
+
+/* Camada sobreposta para dar efeito de profundidade */
+.card-filled-container  .icon-overlay {
+    position: absolute;
+    left: 20px;  /* Distância ajustada para melhor visibilidade */
+    width: 100%;  /* Ajustado para cobrir a área do contêiner */
+    height: 100%; /* Ajustado para cobrir a área do contêiner */
+    background-color: var(--light-blue);
+    border-radius: 15px;
+    z-index: 0; /* Mantém overlay atrás do ícone */
+}
+
+/* Ícone interno */
+.card-filled-container  .icon {
+    position: absolute;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: var(--main-color);
+    padding: 0 1vh;
+    border-radius: 15px;
+    border: 3px solid var(--medium-blue);
+}
+
+.card-filled-container  .icon-content{
+    color: var(--light-blue);
+}
+
+/* Texto */
+.card-filled-container  .card-text {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 25px;
+    text-align: start;
+}

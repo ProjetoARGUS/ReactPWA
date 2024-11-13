@@ -1,0 +1,57 @@
+@import url(../../variables.css);
+@import url(../../font-styles.css);
+
+.nav-menu{
+    background-image: var(--background-gradient-bb);
+    height:10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5vw;
+}
+
+.nav-menu ul{
+    list-style: none;
+    color: var(--background-main-color);
+    display: flex;
+    width: 100%;
+}
+
+.nav-menu ul p{
+    color: var(--background-main-color);
+    margin: 0 0.5rem;
+    font-size: 1rem;
+}
+
+.nav-menu .logo-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-menu .logo{
+    height: 5vh;
+}
+
+.nav-menu .logo-name{
+    color: var(--background-main-color);
+}
+
+.nav-menu .foto-perfil{
+    height: 5vh;
+    width: 5vh;
+    border: 3px solid var(--background-main-color);
+    border-radius: 5vh;
+    margin: 0 0.5rem;
+}
+
+.nav-menu .not{
+    font-size: 5vh;
+    color: var(--background-main-color) !important;
+    margin: 0 0.5rem;
+}

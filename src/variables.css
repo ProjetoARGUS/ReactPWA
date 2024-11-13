@@ -1,8 +1,15 @@
+@import url('./font-styles.css');
+
 :root{
-    --font-color: rgb(25, 25, 25);
-    --main-font-family: "Roboto Condensed", sans-serif;
-    --main-color: -webkit-linear-gradient(0deg, #ff8000, #f25656);
-    --foreground-color: -webkit-linear-gradient(0deg, #3cb6e9, #005a9c);
-    --background-main-color: white;
+    --main-font-family: "Poppins", sans-serif;
+    --main-color: #023047;
+    --foreground-color: #fb8501;
+    --web-orange-500: #FEA519;
+    --web-orange-100: #FFF8E6;
+    --medium-blue: #219ebc;
+    --light-blue: #8ecae6;
+    --background-main-color: #f6f6f8;
     --background-foreground-color: #eff1f5;
+    --background-gradient-bw: -webkit-linear-gradient(270deg, var(--main-color) 20%, white 80%);
+    --background-gradient-bb: -webkit-linear-gradient(300deg, var(--main-color) 80%, var(--medium-blue));
 }

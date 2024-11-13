@@ -1,0 +1,76 @@
+@import url(../../variables.css);
+@import url(../../font-styles.css);
+
+.home-page{
+    padding: 0 10vh;
+    background-color: var(--background-main-color);
+    min-height: 90vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+.title{
+    padding: 5vh 0 2.5vh;
+    font-size: 2rem;
+}
+
+.service-content {
+    background-color: white;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px; /* Espaçamento entre os itens */
+    padding: 20px; /* Margem interna para o grid */
+}
+
+.service-content .home-button {
+    /* Ajuste o tamanho dos botões, caso necessário */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f0f0f0; /* Cor de fundo para os botões */
+    transition: background-color 0.3s;
+}
+
+.service-content .home-button:hover {
+    background-color: #e0e0e0; /* Cor ao passar o mouse */
+}
+
+.aside{
+    margin-top: 12.5vh;
+    margin-bottom: 5vh;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.comunicados-section .div-title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.comunicados-content {
+    background-color: white;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px; /* Espaçamento entre os itens */
+    padding: 20px; /* Margem interna para o grid */
+}
+
+.comunicados-section input[type="button"] {
+    background: none;
+    border: none;
+    color: var(--medium-blue);
+    font-size: 16px; /* Ajuste o tamanho do texto conforme necessário */
+    cursor: pointer;
+}
+
+.comunicados-section input[type="button"]:hover {
+    text-decoration: underline; /* Opcional: Adiciona um sublinhado ao passar o mouse */
+}

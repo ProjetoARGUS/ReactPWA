@@ -1,0 +1,29 @@
+@import url(../../variables.css);
+@import url(../../font-styles.css);
+
+/* Estilo do cartão/botão */
+.card-profile {
+    width: 300px;
+    padding: 20px 25px;
+    border: 2px solid var(--medium-blue);
+    border-radius: 15px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.card-profile p{
+    text-align: start;
+}
+
+.card-profile .span{
+    font-weight: 800;
+}
+
+.card-profile img{
+    height: 5vh;
+    width: 5vh;
+    margin: 1vh 40%;
+}
