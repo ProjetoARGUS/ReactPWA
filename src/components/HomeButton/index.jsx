@@ -6,7 +6,7 @@ export default function HomeButton({ Title, Icon }) {
         <div className="button-container">
             <div className="icon-container">
                 <div className="icon-overlay"></div>
-                <div className="icon">{Icon}</div>
+                <div className="icon"><img src={Icon} alt="icone" /></div>
             </div>
             <div className="button-text">{Title}</div>
         </div>

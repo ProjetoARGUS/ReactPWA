@@ -4,34 +4,42 @@ import HomeButton from '../../components/HomeButton';
 import HomeCardOutlined from '../../components/HomeCardOutlined';
 import HomeCardFilled from '../../components/HomeCardFilled';
 import HomeCardProfile from '../../components/HomeCardPerfil';
-import { IoMdBuild } from "react-icons/io";
-import { LuMessagesSquare } from "react-icons/lu";
-import { FaBoxOpen, FaQuestionCircle, FaChartBar } from "react-icons/fa";
-import { GiOpenGate } from "react-icons/gi";
-import { RiMacbookLine } from "react-icons/ri";
-import { MdEventAvailable } from "react-icons/md";
-import { GoLaw } from "react-icons/go";
-import { FcRules } from "react-icons/fc";
-import { IoHomeSharp } from "react-icons/io5";
+
 import moradora from "/moradora.png";
-import comunicado1 from "/comunicado1.png";
-import comunicado2 from "/comunicado2.png";
-import comunicado3 from "/comunicado3.png";
-import comunicado4 from "/comunicado4.png";
+import inicioIcon from '../../assets/HomeIcons/inicio.svg';
+import manutencaoIcon from '../../assets/HomeIcons/manutencao.svg';
+import chatIcon from '../../assets/HomeIcons/chat.svg';
+import financeiroIcon from '../../assets/HomeIcons/financeiro.svg';
+import encomendasIcon from '../../assets/HomeIcons/encomendas.svg';
+import faqIcon from '../../assets/HomeIcons/faq.svg';
+import conflitosIcon from '../../assets/HomeIcons/conflitos.svg';
+import perfilIcon from '../../assets/HomeIcons/perfil.svg';
+import reservasIcon from '../../assets/HomeIcons/reservas.svg';
+import assembleiaIcon from '../../assets/HomeIcons/assembleia.svg';
+import regrasIcon from '../../assets/HomeIcons/regras.svg';
+import comunicadosIcon from '../../assets/HomeIcons/comunicados.svg';
+import apartamentoIcon from '../../assets/HomeIcons/apartamento.svg';
+import condominioIcon from '../../assets/HomeIcons/condominio.svg';
+
+import comunicado1 from "../../assets/ComunicadosImg/comunicado1.png";
+import comunicado2 from "../../assets/ComunicadosImg/comunicado2.png";
+import comunicado3 from "../../assets/ComunicadosImg/comunicado3.png";
+import comunicado4 from "../../assets/ComunicadosImg/comunicado4.png";
+
 import HomeCardComunicados from '../../components/HomeCardComunicados';
 
 export default function HomePage(){
     const service_items = [
-        {Icon: <IoMdBuild/>, Title: "Manutenção"},
-        {Icon: <LuMessagesSquare/>, Title: "Solicitações"},
-        {Icon: <FaChartBar/>, Title: "Financeiro"},
-        {Icon: <FaBoxOpen/>, Title: "Encomendas"},
-        {Icon: <FaQuestionCircle/>, Title: "Dúvidas (FAQ)"},
-        {Icon: <GiOpenGate/>, Title: "Portaria"},
-        {Icon: <RiMacbookLine/>, Title: "Administração"},
-        {Icon: <MdEventAvailable/>, Title: "Reservas"},
-        {Icon: <GoLaw/>, Title: "Assembleia"},
-        {Icon: <FcRules/>, Title: "Regras"},
+        {Icon: manutencaoIcon, Title: "Manutenção"},
+        {Icon: chatIcon, Title: "Solicitações"},
+        {Icon: financeiroIcon, Title: "Financeiro"},
+        {Icon: encomendasIcon, Title: "Encomendas"},
+        {Icon: faqIcon, Title: "Dúvidas (FAQ)"},
+        {Icon: conflitosIcon, Title: "Conflitos"},
+        {Icon: perfilIcon, Title: "Perfil"},
+        {Icon: reservasIcon, Title: "Reservas"},
+        {Icon: assembleiaIcon, Title: "Assembleia"},
+        {Icon: regrasIcon, Title: "Regras"},
     ]
 
     const comunicados_items = [
@@ -47,7 +55,7 @@ export default function HomePage(){
             <section className="home-page">
                 <main>
                     <section className="service-section">
-                        <h1 className='title'>Inicio</h1>
+                        <h1 className='title'><img src={inicioIcon} alt=""/> Inicio</h1>
                         <div className='service-content'>
                             {
                                 service_items.map((item, index) => (
@@ -63,7 +71,7 @@ export default function HomePage(){
                     </section>
                     <section className="comunicados-section">
                         <div className='div-title'>
-                            <h1 className='title'>Comunicados</h1>
+                            <h1 className='title'><img src={comunicadosIcon} alt="" /> Comunicados</h1>
                             <input className='icon-button' type="button" value="Ver Todos" />
                         </div>
                         <div className='comunicados-content'>
@@ -72,7 +80,7 @@ export default function HomePage(){
                                     <HomeCardComunicados
                                         className="home-button"
                                         key={index}
-                                        Icon={item.Img}
+                                        Img={item.Img}
                                         Title={item.Title}
                                         Desc={item.Desc}
                                     />
@@ -83,12 +91,12 @@ export default function HomePage(){
                 </main>
                 <section className='aside'>
                     <HomeCardOutlined
-                        Icon={<IoHomeSharp />}
+                        Icon={apartamentoIcon}
                         Title="Meu Apartamento"
                         Desc="Apt 407 | Blc 2"
                     />
                     <HomeCardFilled
-                        Icon={<IoHomeSharp />}
+                        Icon={condominioIcon}
                         Title="Meu Apartamento"
                         Desc="Apt 407 | Blc 2"
                     />

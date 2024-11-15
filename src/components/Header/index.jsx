@@ -1,5 +1,5 @@
 import './style.css';
-import { IoIosNotifications } from "react-icons/io";
+import notificacaoIcon from '../../assets/HomeIcons/notificacao.svg'
 
 export default function Header(){
     return(
@@ -20,8 +20,7 @@ export default function Header(){
                     </div>
                     <div className="spacer"></div>
                     <div className="icons">
-                        <a href=""><img className='foto-perfil' src="https://aguasdorio.com.br/wp-content/uploads/2024/03/Moradora-Maria-Ines-Frade-de-56-anos-foi-uma-das-pessoas-que-aproveitaram-esta-acao-1024x813.jpeg" alt="Perfil" /></a>
-                        <a href=""><IoIosNotifications className='not' /></a>
+                        <a href=""><img src={notificacaoIcon} alt="" /></a>
                     </div>
                 </nav>
             </header>
