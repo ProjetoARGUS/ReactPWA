@@ -3,7 +3,6 @@
 
 /* Estilo do cartão/botão */
 .card-filled-container {
-    width: 300px;
     padding: 20px 0px;
     border: 2px solid var(--medium-blue);
     border-radius: 15px;
@@ -62,4 +61,10 @@
     font-weight: bold;
     margin-left: 25px;
     text-align: start;
+}
+
+@media (max-width: 800px){
+    .card-filled-container .card-text{
+        font-size: 1rem;
+    }
 }

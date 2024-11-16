@@ -55,3 +55,9 @@
     color: var(--background-main-color) !important;
     margin: 0 0.5rem;
 }
+
+@media (max-width: 800px){
+    .nav-menu .options{
+        display: none;
+    }
+}

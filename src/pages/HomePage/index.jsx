@@ -90,16 +90,18 @@ export default function HomePage(){
                     </section>
                 </main>
                 <section className='aside'>
-                    <HomeCardOutlined
-                        Icon={apartamentoIcon}
-                        Title="Meu Apartamento"
-                        Desc="Apt 407 | Blc 2"
-                    />
-                    <HomeCardFilled
-                        Icon={condominioIcon}
-                        Title="Meu Apartamento"
-                        Desc="Apt 407 | Blc 2"
-                    />
+                    <div className='cards-div'>
+                        <HomeCardOutlined
+                            Icon={apartamentoIcon}
+                            Title="Meu Apartamento"
+                            Desc="Apt 407 | Blc 2"
+                        />
+                        <HomeCardFilled
+                            Icon={condominioIcon}
+                            Title="Condominio"
+                            Desc="Encanta Moça II"
+                        />
+                    </div>
                     <HomeCardProfile
                         Img={moradora}
                         UserName="Neide da Silva"

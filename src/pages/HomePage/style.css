@@ -1,15 +1,21 @@
 @import url(../../variables.css);
 @import url(../../font-styles.css);
 
-.home-page{
-    padding: 0 10vh;
+.home-page {
+    padding: 0 2rem;
     background-color: var(--background-main-color);
     min-height: 90vh;
     display: flex;
     justify-content: space-around;
+    gap: 2rem;
 }
 
-.title{
+.home-page main {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.title {
     padding: 5vh 0 2.5vh;
     font-size: 2rem;
 }
@@ -18,59 +24,142 @@
     background-color: white;
     border-radius: 15px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px; /* Espaçamento entre os itens */
-    padding: 20px; /* Margem interna para o grid */
+    grid-template-columns: repeat(5, 1fr); /* Responsivo */
+    gap: 1vh;
+    padding: 1vh;
 }
 
 .service-content .home-button {
-    /* Ajuste o tamanho dos botões, caso necessário */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 0.5vw;
     border-radius: 8px;
-    background-color: #f0f0f0; /* Cor de fundo para os botões */
+    background-color: #f0f0f0;
     transition: background-color 0.3s;
 }
 
 .service-content .home-button:hover {
-    background-color: #e0e0e0; /* Cor ao passar o mouse */
+    background-color: #e0e0e0;
 }
 
-.aside{
+.aside {
     margin-top: 12.5vh;
     margin-bottom: 5vh;
     background-color: white;
     border-radius: 15px;
-    padding: 20px;
+    padding: 1vw;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    width: 100%;
+    max-width: 300px; /* Limita o tamanho no desktop */
 }
 
-.comunicados-section .div-title{
+.aside .cards-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+.comunicados-section .div-title {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap; /* Permite quebra de linha se necessário */
+    gap: 10px;
 }
 
 .comunicados-content {
     background-color: white;
     border-radius: 15px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px; /* Espaçamento entre os itens */
-    padding: 20px; /* Margem interna para o grid */
+    grid-template-columns: repeat(4, 1fr); /* Responsivo */
+    gap: 20px;
+    padding: 20px;
 }
 
 .comunicados-section input[type="button"] {
     background: none;
     border: none;
     color: var(--medium-blue);
-    font-size: 16px; /* Ajuste o tamanho do texto conforme necessário */
+    font-size: 16px;
     cursor: pointer;
 }
 
 .comunicados-section input[type="button"]:hover {
-    text-decoration: underline; /* Opcional: Adiciona um sublinhado ao passar o mouse */
+    text-decoration: underline;
+}
+
+@media (max-width: 1200px) {
+    .home-page{
+        flex-direction: column-reverse;
+    }
+
+    .aside {
+        flex-direction: row; /* Permite layout horizontal para elementos internos */
+        width: 100%; /* O aside ocupa toda a largura */
+        max-width: 100vw;
+        margin-top: 2rem; /* Espaço acima do aside */
+        padding: 1rem; /* Espaçamento interno */
+    }
+
+    .aside > * {
+        flex: 1; /* Distribui o espaço igualmente entre os filhos */
+        margin-right: 1rem; /* Espaço entre os itens, se aplicável */
+    }
+
+    .aside:last-child {
+        margin-right: 0; /* Remove margem do último item */
+    }
+
+    .aside .cards-div{
+        justify-content: space-between;
+        height: auto;
+    }
+
+    .comunicados-content {
+        grid-template-columns: repeat(4, 1fr);
+        overflow-x: scroll;
+    }
+}
+
+@media (max-width: 1040px) {
+    .home-page {
+        padding: 0 5vw;
+    }
+
+    .service-content {
+        grid-template-columns: repeat(10, 1fr);
+        overflow-x: scroll;
+    }
+    
+    .title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px){
+    .aside{
+        flex-direction: column;
+        height: max-content;
+    }
+
+    .aside > *, .aside .cards-div > *{
+        margin: 0.5rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.2rem;
+    }
+
+    .service-content .home-button {
+        padding: 0.3vw;
+    }
+
+    .comunicados-section input[type="button"] {
+        font-size: 14px;
+    }
 }
