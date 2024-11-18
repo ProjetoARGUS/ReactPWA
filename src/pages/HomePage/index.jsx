@@ -30,16 +30,16 @@ import HomeCardComunicados from '../../components/HomeCardComunicados';
 
 export default function HomePage(){
     const service_items = [
-        {Icon: manutencaoIcon, Title: "Manutenção"},
-        {Icon: chatIcon, Title: "Solicitações"},
-        {Icon: financeiroIcon, Title: "Financeiro"},
-        {Icon: encomendasIcon, Title: "Encomendas"},
-        {Icon: faqIcon, Title: "Dúvidas (FAQ)"},
-        {Icon: conflitosIcon, Title: "Conflitos"},
-        {Icon: perfilIcon, Title: "Perfil"},
-        {Icon: reservasIcon, Title: "Reservas"},
-        {Icon: assembleiaIcon, Title: "Assembleia"},
-        {Icon: regrasIcon, Title: "Regras"},
+        {Icon: manutencaoIcon, Title: "Manutenção", Nav: "/upKeep"},
+        {Icon: chatIcon, Title: "Solicitações", Nav: ""},
+        {Icon: financeiroIcon, Title: "Financeiro", Nav: ""},
+        {Icon: encomendasIcon, Title: "Encomendas", Nav: ""},
+        {Icon: faqIcon, Title: "Dúvidas (FAQ)", Nav: ""},
+        {Icon: conflitosIcon, Title: "Conflitos", Nav: ""},
+        {Icon: perfilIcon, Title: "Perfil", Nav: ""},
+        {Icon: reservasIcon, Title: "Reservas", Nav: ""},
+        {Icon: assembleiaIcon, Title: "Assembleia", Nav: ""},
+        {Icon: regrasIcon, Title: "Regras", Nav: ""},
     ]
 
     const comunicados_items = [
@@ -64,6 +64,7 @@ export default function HomePage(){
                                     key={index}
                                     Icon={item.Icon}
                                     Title={item.Title}
+                                    Nav={item.Nav}
                                     />
                                 ))
                             }

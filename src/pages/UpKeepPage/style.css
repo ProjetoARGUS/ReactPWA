@@ -1,0 +1,136 @@
+@import url(../../variables.css);
+@import url(../../font-styles.css);
+
+/* Estilização geral */
+.upkeep-page h1 {
+  margin: 2.5rem 0;
+  text-align: center;
+}
+
+.upkeep-forms {
+  width: 90%; /* Reduzido para telas menores */
+  max-width: 900px; /* Máximo para telas maiores */
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f7f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Divisão em linhas para os 4 primeiros campos */
+.upkeep-forms .pessoal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.upkeep-forms input[type="text"],
+.upkeep-forms input[type="email"],
+.upkeep-forms input[type="tel"],
+.upkeep-forms textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%; /* Ocupa todo o espaço da coluna */
+}
+
+.upkeep-forms textarea {
+  resize: none;
+  width: 100%; /* Garantir 100% de largura */
+}
+
+/* Estilo dos checkboxes */
+.upkeep-forms fieldset {
+  margin-bottom: 20px;
+  border: none;
+}
+
+.upkeep-forms legend {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--gray);
+  background-color: var(--light-blue);
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+  gap: 10px; /* Espaçamento entre os elementos */
+}
+
+.upkeep-forms input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* Botões de ação */
+.upkeep-page .buttons {
+  display: flex;
+  flex-wrap: wrap; /* Flexível para telas menores */
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.upkeep-page button {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.upkeep-page button[type="submit"] {
+  background-color: #f97316;
+  color: #fff;
+}
+
+.upkeep-page button[type="submit"]:hover {
+  background-color: #ea580c;
+}
+
+.upkeep-page button[type="reset"] {
+  background-color: #ddd;
+  color: #333;
+}
+
+.upkeep-page button[type="reset"]:hover {
+  background-color: #bbb;
+}
+
+
+@media (max-width: 768px) {
+  .upkeep-page h1{
+    font-size: 1rem;
+  }
+  .upkeep-forms .pessoal {
+    grid-template-columns: 1fr;
+  }
+
+  .checkbox-group {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .upkeep-page .buttons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkbox-group {
+    grid-template-columns: 1fr;
+  }
+
+  .upkeep-forms {
+    padding: 15px;
+  }
+
+  .upkeep-page button {
+    font-size: 12px; /* Ajusta tamanho do texto dos botões */
+  }
+}

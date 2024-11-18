@@ -12,4 +12,5 @@
     --background-foreground-color: #eff1f5;
     --background-gradient-bw: -webkit-linear-gradient(270deg, var(--main-color) 20%, white 80%);
     --background-gradient-bb: -webkit-linear-gradient(300deg, var(--main-color) 80%, var(--medium-blue));
+    --gray: #252525;
 }

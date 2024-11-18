@@ -16,6 +16,7 @@
 
 .button-container:hover {
     transform: scale(1.05); /* Adiciona um leve efeito de zoom */
+    cursor: pointer;
 }
 
 /* Ícone de fundo */

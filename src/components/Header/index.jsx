@@ -8,9 +8,7 @@ export default function Header(){
                 <nav className="nav-menu">
                     <div className="options">
                         <ul>
-                            <li><a href=""><p>Inicio</p></a></li>
-                            <li><a href=""><p>Mediação de Conflitos</p></a></li>
-                            <li><a href=""><p>Perfil</p></a></li>
+                            <li><a href="/home"><p>Inicio</p></a></li>
                         </ul>
                     </div>
                     <div className="spacer"></div>
