@@ -1,0 +1,107 @@
+@import url(../../variables.css);
+@import url(../../font-styles.css);
+
+/* Estilo geral */
+
+.mediation-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 90vh;
+  background-color: var(--background-foreground-color);
+}
+
+.mediation-page h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  color: var(--dark-blue);
+}
+
+.mediation-forms {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--main-color);
+  margin-bottom: 7.5rem;
+}
+
+.mediation-forms .fields-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.mediation-forms label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.mediation-forms .description-container {
+  margin: 1.5rem 0;
+}
+
+.mediation-forms input[type="date"],
+.mediation-forms input[type="text"],
+.mediation-forms input[type="email"],
+.mediation-forms input[type="tel"],
+.mediation-forms textarea {
+  padding: 0.25rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%; /* Ocupa todo o espaço da coluna */
+  border: 1px solid var(--main-color);
+  background-color: var(--background-foreground-color);
+}
+
+/* Botões */
+.mediation-forms .buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.mediation-forms button[type="submit"] {
+  background-color: var(--foreground-color);
+  color: var(--background-main-color);
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.mediation-forms button[type="submit"]:hover {
+  background-color: var(--web-orange-500);
+}
+
+.mediation-forms button[type="reset"] {
+  background-color: var(--medium-blue);
+  color: var(--background-main-color);
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.mediation-forms button[type="reset"]:hover {
+  background-color: var(--medium-blue-hover);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .mediation-forms .fields-group {
+    grid-template-columns: 1fr;
+  }
+}

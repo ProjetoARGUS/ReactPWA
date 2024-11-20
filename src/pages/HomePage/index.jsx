@@ -35,7 +35,7 @@ export default function HomePage(){
         {Icon: financeiroIcon, Title: "Financeiro", Nav: ""},
         {Icon: encomendasIcon, Title: "Encomendas", Nav: ""},
         {Icon: faqIcon, Title: "Dúvidas (FAQ)", Nav: ""},
-        {Icon: conflitosIcon, Title: "Conflitos", Nav: ""},
+        {Icon: conflitosIcon, Title: "Conflitos", Nav: "/mediation"},
         {Icon: perfilIcon, Title: "Perfil", Nav: ""},
         {Icon: reservasIcon, Title: "Reservas", Nav: ""},
         {Icon: assembleiaIcon, Title: "Assembleia", Nav: ""},

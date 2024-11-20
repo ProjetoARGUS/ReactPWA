@@ -1,7 +1,13 @@
 @import url(../../variables.css);
 @import url(../../font-styles.css);
 
-/* Estilização geral */
+.upkeep-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: var(--background-foreground-color);
+}
+
 .upkeep-page h1 {
   margin: 2.5rem 0;
   text-align: center;
@@ -9,13 +15,13 @@
 
 .upkeep-forms {
   width: 90%; /* Reduzido para telas menores */
-  max-width: 900px; /* Máximo para telas maiores */
+  max-width: 1200px; /* Máximo para telas maiores */
   margin: 20px auto;
-  padding: 20px;
-  background-color: #f7f9fa;
+  padding: 1rem;
+  background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  font-family: 'Arial', sans-serif;
+  border: 1px solid var(--main-color);
 }
 
 /* Divisão em linhas para os 4 primeiros campos */
@@ -30,11 +36,13 @@
 .upkeep-forms input[type="email"],
 .upkeep-forms input[type="tel"],
 .upkeep-forms textarea {
-  padding: 10px;
+  padding: 0.25rem;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 1rem;
   width: 100%; /* Ocupa todo o espaço da coluna */
+  border: 1px solid var(--main-color);
+  background-color: var(--background-foreground-color);
 }
 
 .upkeep-forms textarea {
@@ -55,12 +63,12 @@
   color: var(--gray);
   background-color: var(--light-blue);
   border-radius: 50px;
-  padding: 0.5rem 1.5rem;
+  padding: 0.25rem 1.5rem;
 }
 
 .checkbox-group {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+  grid-template-columns: repeat(4, 1fr); /* 3 colunas */
   gap: 10px; /* Espaçamento entre os elementos */
 }
 
@@ -86,26 +94,25 @@
 }
 
 .upkeep-page button[type="submit"] {
-  background-color: #f97316;
-  color: #fff;
+  background-color: var(--foreground-color);
+  color: var(--background-main-color);
 }
 
 .upkeep-page button[type="submit"]:hover {
-  background-color: #ea580c;
+  background-color: var(--web-orange-500);
 }
 
 .upkeep-page button[type="reset"] {
-  background-color: #ddd;
-  color: #333;
+  background-color: var(--medium-blue);
+  color: var(--background-main-color);
 }
 
 .upkeep-page button[type="reset"]:hover {
-  background-color: #bbb;
+  background-color: var(--medium-blue-hover);
 }
 
-
 @media (max-width: 768px) {
-  .upkeep-page h1{
+  .upkeep-page h1 {
     font-size: 1rem;
   }
   .upkeep-forms .pessoal {

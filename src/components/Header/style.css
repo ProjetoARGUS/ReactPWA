@@ -1,63 +1,53 @@
 @import url(../../variables.css);
 @import url(../../font-styles.css);
 
-.nav-menu{
-    background-image: var(--background-gradient-bb);
-    height:10vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 7.5vw;
+.nav-menu {
+  background-image: var(--background-gradient-bb);
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 7.5vw;
 }
 
-.nav-menu ul{
-    list-style: none;
-    color: var(--background-main-color);
-    display: flex;
-    width: 100%;
-}
-
-.nav-menu ul p{
-    color: var(--background-main-color);
-    margin: 0 0.5rem;
-    font-size: 1rem;
-}
-
-.nav-menu .logo-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.nav-menu .logo-link{
     height: 100%;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%) translateY(2vh);
 }
 
-.nav-menu .logo{
-    height: 5vh;
+.nav-menu .logo-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
 }
 
-.nav-menu .logo-name{
-    color: var(--background-main-color);
+.nav-menu .logo {
+  height: 75%;
+  width: auto;
 }
 
-.nav-menu .foto-perfil{
-    height: 5vh;
-    width: 5vh;
-    border: 3px solid var(--background-main-color);
-    border-radius: 5vh;
-    margin: 0 0.5rem;
+.nav-menu .logo-name {
+  color: var(--background-main-color);
 }
 
-.nav-menu .not{
-    font-size: 5vh;
-    color: var(--background-main-color) !important;
-    margin: 0 0.5rem;
+.nav-menu .foto-perfil {
+  height: 5vh;
+  width: 5vh;
+  border: 3px solid var(--background-main-color);
+  border-radius: 5vh;
+  margin: 0 0.5rem;
 }
 
-@media (max-width: 800px){
-    .nav-menu .options{
-        display: none;
-    }
+.nav-menu .not {
+  font-size: 5vh;
+  color: var(--background-main-color) !important;
+  margin: 0 0.5rem;
+}
+
+@media (max-width: 800px) {
+  .nav-menu .options {
+    display: none;
+  }
 }
