@@ -52,7 +52,8 @@
 .mediation-forms input[type="text"],
 .mediation-forms input[type="email"],
 .mediation-forms input[type="tel"],
-.mediation-forms textarea {
+.mediation-forms textarea,
+.mediation-forms select {
   padding: 0.25rem;
   border: 1px solid #ddd;
   border-radius: 4px;

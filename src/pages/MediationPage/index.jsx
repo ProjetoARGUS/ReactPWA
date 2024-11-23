@@ -5,11 +5,11 @@ import './style.css';
 export default function MediationPage() {
     const fields = [
         { Id: "data-ocorrencia", Label: "Data do Ocorrido", Type: "date", Require: true },
-        { Id: "tipo-conserto", Label: "Tipo de Conserto", Type: "text", Require: true },
+        { Id: "tipo-conflito", Label: "Tipo de Conflito", Type: "select", Require: true, Options: ["Problemas com lixos", "Quebra de regras e normas", "Reformas", "Uso indevido em áreas comuns", "Barulho", "Discursão", "Briga"] },
         { Id: "onde-ocorreu", Label: "Onde Ocorreu", Type: "text", Require: true },
-        { Id: "vitima", Label: "Vítima Envolvida", Type: "text", Require: false },
-        { Id: "urgencia", Label: "Urgência", Type: "text", Require: false },
-        { Id: "estado", Label: "Estado", Type: "text", Require: false },
+        { Id: "envolvencia", Label: "Envolvência", Type: "select", Require: false, Options: ["Estou diretamente envolvido", "Estou indiretamente envolvido", "Conheço os envolvidos", "Desconheço os envolvidos"] },
+        { Id: "urgencia", Label: "Urgência", Type: "select", Require: false, Options: ["Baixa", "Média", "Alta"] },
+        { Id: "status", Label: "Status", Type: "select", Require: false, Options: ["Em andamento", "Cessado"] },
     ];
 
     return (
@@ -22,12 +22,24 @@ export default function MediationPage() {
                         {fields.map((field, index) => (
                             <div key={index} className="field-container">
                                 <label htmlFor={field.Id}>{field.Label}</label>
-                                <input
+                                {
+                                    field.Type != "select" ?
+                                    <input
                                     id={field.Id}
                                     name={field.Id}
                                     type={field.Type}
                                     required={field.Require}
-                                />
+                                    />
+                                    :
+                                    <select id={field.Id} name={field.Id}>
+                                        <option>Selecione uma opção</option>
+                                        {
+                                            field.Options.map((option, index) => (
+                                                <option key={index} value={option.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, "-")}>{option}</option>
+                                                ))
+                                        }
+                                    </select>
+                                }
                             </div>
                         ))}
                     </div>
