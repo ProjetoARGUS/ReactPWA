@@ -168,3 +168,17 @@
         font-size: 4.5vh;
     }
 }
+.register-link {
+    text-align: center;
+    margin-top: 20px; /* Ajuste conforme necessário */
+}
+
+.register-link a {
+    text-decoration: none;
+    color: #007bff; /* Cor do link */
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}

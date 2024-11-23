@@ -48,6 +48,13 @@ export default function LoginPage() {
               <input className="button" type="button" value="ENTRAR" />
             </a>
           </form>
+
+          {/* Link de cadastro */}
+          <div className="register-link">
+            <p className="poppins-regular">
+              Ainda não tem uma conta? <a href="/register">Cadastre-se</a>
+            </p>
+          </div>
         </div>
       </section>
     </>
