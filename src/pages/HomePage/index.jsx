@@ -37,7 +37,7 @@ export default function HomePage(){
         {Icon: faqIcon, Title: "Dúvidas (FAQ)", Nav: ""},
         {Icon: conflitosIcon, Title: "Conflitos", Nav: "/mediation"},
         {Icon: perfilIcon, Title: "Perfil", Nav: ""},
-        {Icon: reservasIcon, Title: "Reservas", Nav: ""},
+        {Icon: reservasIcon, Title: "Reservas", Nav: "/reservations"},
         {Icon: assembleiaIcon, Title: "Assembleia", Nav: ""},
         {Icon: regrasIcon, Title: "Regras", Nav: ""},
     ]

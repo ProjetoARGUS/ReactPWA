@@ -9,6 +9,8 @@ import RecoveryPage from './pages/RecoveryPage';
 import RecoveryKeyPage from './pages/RecoveryKeyPage';
 import UpKeepPage from './pages/UpKeepPage';
 import MediationPage from './pages/MediationPage';
+import ReservationsPage from './pages/ReservationsPage';
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -21,6 +23,7 @@ createRoot(document.getElementById('root')).render(
                 <Route path='/recoveryKey' element={<RecoveryKeyPage/>} />
                 <Route path='/upKeep' element={<UpKeepPage/>} />
                 <Route path='/mediation' element={<MediationPage/>} />
+                <Route path='/reservations' element={<ReservationsPage/>} />
                
             </Routes>
         </Router>

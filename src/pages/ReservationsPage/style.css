@@ -1,0 +1,143 @@
+@import url(../../variables.css);
+
+.reservations-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza o conteúdo horizontalmente */
+  justify-content: center; /* Centraliza o conteúdo verticalmente */
+  padding: 2rem 1rem;
+  background-color: var(--background-foreground-color);
+  height: 90vh; /* Garante o preenchimento da tela */
+}
+
+.reservations-page h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  color: var(--dark-blue);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.reservations-forms {
+  width: 90%;
+  max-width: 1200px;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--main-color);
+}
+
+.fields-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Altera para 2 colunas */
+  gap: 1.5rem;
+}
+
+.field-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.reservations-forms input[type="date"],
+.reservations-forms input[type="text"],
+.reservations-forms textarea,
+.reservations-forms select {
+  padding: 0.25rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%; /* Ocupa todo o espaço da coluna */
+  border: 1px solid var(--main-color);
+  background-color: var(--background-foreground-color);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--foreground-color); /* Destaque ao foco */
+  outline: none;
+}
+
+.description-container {
+  grid-column: span 3;
+}
+
+.extra-info {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  text-align: center;
+  border: 1px solid var(--main-color);
+  background-color: var(--background-foreground-color);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.extra-info p,
+.extra-info span {
+  margin: 0.5rem 0;
+  font-weight: bold;
+  color: var(--web-orange-500);
+}
+
+.extra-info span {
+  color: var(--medium-blue);
+}
+
+.extra-info strong {
+  color: #333;
+}
+
+.reservations-forms .buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center; /* Centraliza os botões */
+  gap: 1rem;
+}
+
+.reservations-forms button[type="submit"],
+.reservations-forms button[type="reset"] {
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.reservations-forms button[type="submit"] {
+  background-color: var(--foreground-color);
+  color: var(--background-main-color);
+  border: none;
+}
+
+.reservations-forms button[type="submit"]:hover {
+  background-color: var(--web-orange-500);
+  transform: scale(1.05);
+}
+
+.reservations-forms button[type="reset"] {
+  background-color: var(--medium-blue);
+  color: var(--background-main-color);
+  border: none;
+}
+
+.reservations-forms button[type="reset"]:hover {
+  background-color: var(--medium-blue-hover);
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .fields-group {
+    grid-template-columns: 1fr; /* Cada campo ocupa uma linha */
+    gap: 1rem;
+  }
+
+  .description-container {
+    grid-column: span 1;
+  }
+}

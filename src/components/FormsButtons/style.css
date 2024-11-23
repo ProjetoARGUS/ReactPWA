@@ -1,0 +1,38 @@
+@import url(../../variables.css);
+
+  .forms-buttons .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  
+  .forms-buttons button[type="submit"] {
+    background-color: var(--foreground-color);
+    color: var(--background-main-color);
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .forms-buttons button[type="submit"]:hover {
+    background-color: var(--web-orange-500);
+  }
+  
+  .forms-buttons button[type="reset"] {
+    background-color: var(--medium-blue);
+    color: var(--background-main-color);
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .forms-buttons button[type="reset"]:hover {
+    background-color: var(--medium-blue-hover);
+  }
