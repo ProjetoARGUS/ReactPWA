@@ -93,7 +93,7 @@
 
 @media (max-width: 1200px) {
     .home-page{
-        flex-direction: column-reverse;
+        flex-direction: column;
     }
 
     .aside {

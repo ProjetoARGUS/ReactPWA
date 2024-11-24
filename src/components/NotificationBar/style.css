@@ -1,0 +1,49 @@
+@import url(../../variables.css);
+
+.search-bar{
+    height: 15%;
+    width: 100%;
+    background-color: var(--main-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.search-bar h1{
+    color: white;
+}
+
+.search-bar .search{
+    background-color: white;
+    align-items: center;
+    width: 75%;
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 7.5px;
+}
+
+.search-bar .search input, .search-bar .search button{
+    border: none;
+    outline: none;
+    background-color: white;
+}
+
+.search-bar .search input{
+    width: 95%;
+}
+
+.search-bar .search button:hover{
+    cursor: pointer;
+}
+
+.notifications{
+    overflow-x: auto;
+    padding: 0 1rem;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}

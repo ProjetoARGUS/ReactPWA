@@ -1,0 +1,60 @@
+@import url(../../variables.css);
+
+.notification-unit{
+    background-color: var(--background-foreground-color);
+    padding: 0.5rem 0;
+    margin: 0.5rem;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.notification-unit  .icon-container {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: var(--main-color);
+    border-radius: 15px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    z-index: 1;
+}
+
+.notification-unit  .icon-overlay {
+    position: absolute;
+    left: 10px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--web-orange-500);
+    border-radius: 15px;
+    z-index: 0;
+}
+
+.notification-unit  .icon {
+    position: absolute;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: var(--foreground-color);
+    border-radius: 15px;
+    border: 2px solid var(--background-foreground-color);
+}
+
+.notification-unit  .icon-content{
+    color: var(--web-orange-500);
+}
+
+.notification-content{
+    margin-left: 2rem;
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+}
+
+.notification-content h2, .notification-content p{
+    font-size: 0.75rem;
+}

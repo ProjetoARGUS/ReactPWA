@@ -1,7 +1,15 @@
+import { useState } from "react";
 import "./style.css";
 import notificacaoIcon from "../../assets/HomeIcons/notificacao.svg";
+import NotificationBar from "../../components/NotificationBar";
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <>
       <header>
@@ -13,12 +21,20 @@ export default function Header() {
             </div>
           </a>
           <div className="icons">
-            <a href="">
-              <img src={notificacaoIcon} alt="" />
-            </a>
+            <button onClick={toggleMenu} className="notification-button">
+              <img src={notificacaoIcon} alt="Notificações" />
+            </button>
           </div>
         </nav>
       </header>
+
+      {/* Menu lateral */}
+      <aside className={`notification-menu ${isMenuOpen ? "open" : ""}`}>
+        <NotificationBar />
+      </aside>
+
+      {/* Background escurecido ao abrir o menu */}
+      {isMenuOpen && <div className="menu-overlay" onClick={toggleMenu}></div>}
     </>
   );
 }
