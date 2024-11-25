@@ -1,0 +1,72 @@
+@import url(../../variables.css);
+
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 2rem;
+}
+
+.profile-page h1 {
+    color: #023047;
+    margin-bottom: 1rem;
+}
+
+.profile-forms {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+}
+
+.fields-group,
+.emergency-contacts {
+    margin-bottom: 2rem;
+}
+
+.field-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.field-container label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.field-container input,
+.field-container select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.buttons button, .buttons input[type="button"] {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.buttons button[type="submit"], .buttons input[type="button"] {
+    background-color: #219ebc;
+    color: #ffffff;
+}
+
+.buttons button[type="reset"] {
+    background-color: #fb8501;
+    color: #ffffff;
+}

@@ -36,7 +36,7 @@ export default function HomePage(){
         {Icon: encomendasIcon, Title: "Encomendas", Nav: ""},
         {Icon: faqIcon, Title: "Dúvidas (FAQ)", Nav: ""},
         {Icon: conflitosIcon, Title: "Conflitos", Nav: "/mediation"},
-        {Icon: perfilIcon, Title: "Perfil", Nav: ""},
+        {Icon: perfilIcon, Title: "Perfil", Nav: "/profile"},
         {Icon: reservasIcon, Title: "Reservas", Nav: "/reservations"},
         {Icon: assembleiaIcon, Title: "Assembleia", Nav: "/assembly"},
         {Icon: regrasIcon, Title: "Regras", Nav: ""},
