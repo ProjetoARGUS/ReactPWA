@@ -1,0 +1,101 @@
+@import url(../../variables.css);
+@import url(../../font-styles.css);
+
+.order-page {
+    display: flex;
+    height: 100vh;
+}
+
+.left-sidebar {
+    width: 250px; /* Largura fixa para o chat */
+    background-color: #f5f5f5;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.main-content {
+    flex-grow: 1; /* Ocupa o restante do espaço */
+    padding: 20px;
+    background-color: #ffffff;
+    overflow-y: auto; /* Para permitir rolagem, caso necessário */
+    text-align: center; /* Centraliza o conteúdo */
+}
+
+.page-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+/* Estilo do ícone de chat */
+.chat-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.chat-icon img {
+    width: 50%;
+}
+
+.chat-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+/* Estilo da janela de chat */
+.chat-box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.chat-header h2 {
+    font-size: 16px;
+}
+
+.close-chat {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.chat-body {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.chat-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.order-list {
+    display: flex; /* Exibe os filhos em linha */
+    gap: 1rem; /* Espaço entre os cards */
+    overflow-x: auto; /* Habilita o scroll horizontal */
+    padding: 10px; /* Espaçamento interno */
+    scroll-behavior: smooth; /* Suaviza o scroll */
+    white-space: nowrap; /* Impede que os elementos quebrem a linha */
+}

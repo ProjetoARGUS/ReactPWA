@@ -13,6 +13,7 @@ import ReservationsPage from './pages/ReservationsPage';
 import RegisterPage from './pages/RegisterPage';
 import AssemblyPage from './pages/AssemblyPage';
 import ProfilePage from './pages/ProfilePage';
+import OrderPage from './pages/OrderPage';
 
 
 createRoot(document.getElementById('root')).render(
@@ -30,6 +31,7 @@ createRoot(document.getElementById('root')).render(
                 <Route path='/register' element={<RegisterPage/>} />
                 <Route path='/assembly' element={<AssemblyPage/>} />
                 <Route path='/profile' element={<ProfilePage/>} />
+                <Route path='/order' element={<OrderPage/>} />
             </Routes>
         </Router>
   </StrictMode>,

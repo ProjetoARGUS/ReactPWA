@@ -33,7 +33,7 @@ export default function HomePage(){
         {Icon: manutencaoIcon, Title: "Manutenção", Nav: "/upKeep"},
         {Icon: chatIcon, Title: "Solicitações", Nav: ""},
         {Icon: financeiroIcon, Title: "Financeiro", Nav: ""},
-        {Icon: encomendasIcon, Title: "Encomendas", Nav: ""},
+        {Icon: encomendasIcon, Title: "Encomendas", Nav: "/order"},
         {Icon: faqIcon, Title: "Dúvidas (FAQ)", Nav: ""},
         {Icon: conflitosIcon, Title: "Conflitos", Nav: "/mediation"},
         {Icon: perfilIcon, Title: "Perfil", Nav: "/profile"},
