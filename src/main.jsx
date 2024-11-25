@@ -11,6 +11,7 @@ import UpKeepPage from './pages/UpKeepPage';
 import MediationPage from './pages/MediationPage';
 import ReservationsPage from './pages/ReservationsPage';
 import RegisterPage from './pages/RegisterPage';
+import AssemblyPage from './pages/AssemblyPage';
 
 
 createRoot(document.getElementById('root')).render(
@@ -26,7 +27,7 @@ createRoot(document.getElementById('root')).render(
                 <Route path='/mediation' element={<MediationPage/>} />
                 <Route path='/reservations' element={<ReservationsPage/>} />
                 <Route path='/register' element={<RegisterPage/>} />
-               
+                <Route path='/assembly' element={<AssemblyPage/>} />
             </Routes>
         </Router>
   </StrictMode>,

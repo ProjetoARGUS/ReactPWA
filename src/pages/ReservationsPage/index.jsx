@@ -16,7 +16,7 @@ export default function ReservationsPage() {
       Label: "Escolha o local da reserva*",
       Type: "select",
       Require: true,
-      Options: ["Salão de festas", "Quadra"],
+      Options: ["Salão de festas", "Quadra",],
     },
     { Id: "date", Label: "Selecione a data*", Type: "date", Require: true },
   ];

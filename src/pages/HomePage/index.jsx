@@ -38,7 +38,7 @@ export default function HomePage(){
         {Icon: conflitosIcon, Title: "Conflitos", Nav: "/mediation"},
         {Icon: perfilIcon, Title: "Perfil", Nav: ""},
         {Icon: reservasIcon, Title: "Reservas", Nav: "/reservations"},
-        {Icon: assembleiaIcon, Title: "Assembleia", Nav: ""},
+        {Icon: assembleiaIcon, Title: "Assembleia", Nav: "/assembly"},
         {Icon: regrasIcon, Title: "Regras", Nav: ""},
     ]
 
