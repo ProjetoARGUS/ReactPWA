@@ -42,7 +42,7 @@ export default function RecoveryKeyPage() {
                         required
                     />
 
-                    <button type="submit" className="submit-button">Recuperar</button> 
+                    <button type="submit" className="submit-button" onClick={() => {window.location.href="/login"}}>Recuperar</button> 
                 </form>
             </div>
         </section>
