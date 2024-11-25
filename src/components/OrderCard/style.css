@@ -1,0 +1,81 @@
+@import url(../../variables.css);
+@import url(../../font-styles.css);
+
+.order-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 75%;
+    padding: 15px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-card .img-card {
+    width: 22.5rem;
+    height: 10rem;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.order-details p {
+    display: flex;
+    flex-direction: column;
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.order-details p {
+    display: flex;
+    flex-direction: column;
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.order-details p strong {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.order-details p span {
+    border: 1px solid #ccc; /* Cor da borda */
+    border-radius: 16px; /* Bordas mais arredondadas */
+    padding: 2px; /* Espaço interno */
+    font-size: 14px;
+    background-color: #f9f9f9; /* Fundo claro */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve para destaque */
+}
+
+.order-code {
+    display: flex;
+    align-items: center; /* Alinha os itens no centro verticalmente */
+    margin: 16px 0; /* Espaço entre a imagem e os detalhes */
+}
+
+.icon-placeholder {
+    background-color: var(--foreground-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Torna o ícone circular */
+    background-color:none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 1rem; /* Espaço entre o ícone e o texto */
+    padding: 0.75rem 0.25rem 0.25rem 0.25rem;
+}
+
+.code-number {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.code-text {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
