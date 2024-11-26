@@ -16,7 +16,7 @@ import ProfilePage from './pages/ProfilePage';
 import OrderPage from './pages/OrderPage';
 import RulesPage from './pages/RulesPage';
 import FaqPage from './pages/FaqPage';
-
+import RequestPage from './pages/RequestPage';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -36,6 +36,7 @@ createRoot(document.getElementById('root')).render(
                 <Route path='/order' element={<OrderPage/>} />
                 <Route path='/rules' element={<RulesPage/>} />
                 <Route path='/faq' element={<FaqPage/>} />
+                <Route path='/request' element={<RequestPage/>} />
             </Routes>
         </Router>
   </StrictMode>,

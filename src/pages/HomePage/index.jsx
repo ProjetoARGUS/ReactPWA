@@ -31,7 +31,7 @@ import HomeCardComunicados from '../../components/HomeCardComunicados';
 export default function HomePage(){
     const service_items = [
         {Icon: manutencaoIcon, Title: "Manutenção", Nav: "/upKeep"},
-        {Icon: chatIcon, Title: "Solicitações", Nav: ""},
+        {Icon: chatIcon, Title: "Solicitações", Nav: "/request"},
         {Icon: financeiroIcon, Title: "Financeiro", Nav: ""},
         {Icon: encomendasIcon, Title: "Encomendas", Nav: "/order"},
         {Icon: faqIcon, Title: "Dúvidas (FAQ)", Nav: "/faq"},

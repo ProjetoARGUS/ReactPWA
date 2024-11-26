@@ -1,0 +1,200 @@
+/* Estrutura geral da página */
+.requests-page {
+  display: flex;
+  flex-direction: row;
+  height: 90vh; /* A altura foi ajustada para compensar o Header */
+  overflow: hidden; /* Impede rolagem horizontal */
+}
+
+/* Painel esquerdo com a lista de contatos */
+.left-panel {
+  width: 300px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  overflow-y: auto;
+  border-right: 1px solid #ddd;
+  transition: transform 0.3s ease-in-out; /* Transição suave */
+}
+
+/* Lista de contatos */
+.contacts-list {
+  margin-top: 20px;
+}
+
+/* Cartão de contato */
+.contact-card {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.contact-card:hover,
+.contact-card.selected {
+  background-color: #e0e0e0;
+}
+
+/* Informações do contato */
+.contact-info {
+  margin-left: 10px;
+}
+
+/* Adiciona uma seta para voltar */
+.contact-info .back-arrow {
+  font-size: 18px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* Área de conversa */
+.chat-area {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Flexbox para garantir que a caixa de mensagens e o input fiquem empilhados */
+}
+
+/* Janela de chat */
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chat-window .contact-title {
+  display: flex;
+  gap: 1rem;
+}
+
+.chat-window .contact-title button {
+  background-color: transparent;
+  border: transparent;
+  height: 100%;
+  width: 2rem;
+  font-size: 1.5rem;
+}
+
+.chat-window .contact-title button:hover{
+    cursor: pointer;
+}
+
+/* Lista de mensagens */
+.messages {
+  flex: 1; /* Faz com que as mensagens ocupem todo o espaço disponível */
+  overflow-y: auto; /* Permite rolar as mensagens */
+  margin-bottom: 20px;
+}
+
+/* Estilo geral para as mensagens */
+.message {
+  max-width: 60%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  word-wrap: break-word;
+}
+
+/* Alinhamento das mensagens enviadas por você (à direita) */
+.message.sent {
+  background-color: #d4f8e8;
+  align-self: flex-end;
+  text-align: right;
+  margin-left: auto; /* Garante que as mensagens enviadas fiquem à direita */
+}
+
+/* Alinhamento das mensagens recebidas (à esquerda) */
+.message.received {
+  background-color: #f1f0f0;
+  align-self: flex-start;
+  text-align: left;
+  margin-right: auto; /* Garante que as mensagens recebidas fiquem à esquerda */
+}
+
+/* Estilo para o campo de input de mensagem */
+.message-input {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #ddd;
+}
+
+.message-input input {
+  flex: 1; /* Faz com que o campo de input ocupe o restante do espaço disponível */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-right: 10px; /* Espaçamento entre o input e o botão */
+  outline: none;
+}
+
+.message-input button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Seu CSS principal */
+.left-panel.hide {
+  display: none;
+}
+
+.chat-area.show {
+  display: block;
+}
+
+.back-arrow {
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 10px;
+  color: #007bff;
+}
+
+.contact-card.selected {
+  background-color: #f0f8ff;
+}
+
+.contact-card:hover {
+  cursor: pointer;
+}
+
+.requests-page {
+  display: flex;
+}
+
+.left-panel {
+  width: 250px;
+  padding: 10px;
+}
+
+.chat-area {
+  flex-grow: 1;
+  padding: 10px;
+  display: none;
+}
+
+.no-contact-selected {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .requests-page {
+    flex-direction: column;
+  }
+
+  .left-panel {
+    width: 100%;
+    display: block;
+  }
+
+  .chat-area {
+    width: 100%;
+    display: block;
+  }
+}
