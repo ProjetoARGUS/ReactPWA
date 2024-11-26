@@ -39,7 +39,7 @@ export default function HomePage(){
         {Icon: perfilIcon, Title: "Perfil", Nav: "/profile"},
         {Icon: reservasIcon, Title: "Reservas", Nav: "/reservations"},
         {Icon: assembleiaIcon, Title: "Assembleia", Nav: "/assembly"},
-        {Icon: regrasIcon, Title: "Regras", Nav: ""},
+        {Icon: regrasIcon, Title: "Regras", Nav: "/rules"},
     ]
 
     const comunicados_items = [

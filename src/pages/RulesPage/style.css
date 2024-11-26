@@ -1,0 +1,84 @@
+@import url(../../variables.css);
+
+.rules-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 90vh;
+    padding: 5rem 0;
+}
+
+.rules-search{
+    display: flex;
+    justify-content: center;
+}
+
+.rules-search .search{
+    background-color: var(--background-main-color);
+    align-items: center;
+    width: 75%;
+    max-width: 400px;
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 15px;
+    border: 1px solid var(--main-color);
+}
+
+.rules-search .search input, .rules-search .search button{
+    border: none;
+    outline: none;
+    background-color: var(--background-main-color);
+}
+
+.rules-search .search input{
+    width: 95%;
+    max-width: 1000px;
+}
+
+.rules-search .search button:hover{
+    cursor: pointer;
+}
+
+.rules-page .dropdown-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+}
+
+.rules-page .dropdown {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.rules-page .dropdown:hover {
+    background-color: #d1d5db;
+}
+
+.rules-page .dropdown-header {
+    font-weight: bold;
+}
+
+/* Esconde o conteúdo por padrão */
+.rules-page .dropdown-content {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Exibe o conteúdo apenas no dropdown aberto */
+.rules-page .dropdown.open .dropdown-content {
+    display: block;
+}
