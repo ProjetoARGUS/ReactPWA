@@ -15,6 +15,7 @@ import AssemblyPage from './pages/AssemblyPage';
 import ProfilePage from './pages/ProfilePage';
 import OrderPage from './pages/OrderPage';
 import RulesPage from './pages/RulesPage';
+import FaqPage from './pages/FaqPage';
 
 
 createRoot(document.getElementById('root')).render(
@@ -34,6 +35,7 @@ createRoot(document.getElementById('root')).render(
                 <Route path='/profile' element={<ProfilePage/>} />
                 <Route path='/order' element={<OrderPage/>} />
                 <Route path='/rules' element={<RulesPage/>} />
+                <Route path='/faq' element={<FaqPage/>} />
             </Routes>
         </Router>
   </StrictMode>,
