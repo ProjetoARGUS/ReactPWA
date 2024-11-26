@@ -10,21 +10,18 @@ export default function ProfilePage() {
         Sobrenome: "Silva",
         CPF: "000.000.000-00",
         Telefone: "(81) 91234-5678",
-        Genero: "masculino",
-        Idade: 30,
     });
 
-    const [emergencyContacts, setEmergencyContacts] = useState({
-        Pessoa_1: "Maria",
-        Telefone_1: "(81) 92345-6789",
-        Pessoa_2: "Carlos",
-        Telefone_2: "(81) 98765-4321",
+    const [condominiumInfo, setCondominiumInfo] = useState({
+        Condominio: "Encanta Moça I",
+        Apartamento: "407",
+        Bloco: "2",
     });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name.startsWith('contact') || name.startsWith('phone')) {
-            setEmergencyContacts((prev) => ({ ...prev, [name]: value }));
+            setCondominiumInfo((prev) => ({ ...prev, [name]: value }));
         } else {
             setUserInfo((prev) => ({ ...prev, [name]: value }));
         }
@@ -37,7 +34,7 @@ export default function ProfilePage() {
     const handleSubmit = (e) => {
         e.preventDefault();
         try {
-            console.log("Informações salvas:", { userInfo, emergencyContacts });
+            console.log("Informações salvas:", { userInfo, condominiumInfo });
             setIsEditing(false);
         } catch (error) {
             console.error("Erro ao salvar:", error);
@@ -67,42 +64,27 @@ export default function ProfilePage() {
                         {Object.keys(userInfo).map((key, index) => (
                             <div key={index} className="field-container">
                                 <label htmlFor={key}>{formatLabel(key)}</label>
-                                {key === "gender" ? (
-                                    <select
-                                        id={key}
-                                        name={key}
-                                        value={userInfo[key]}
-                                        onChange={handleChange}
-                                        disabled={!isEditing}
-                                    >
-                                        <option value="">Selecione uma opção</option>
-                                        <option value="masculino">Masculino</option>
-                                        <option value="feminino">Feminino</option>
-                                        <option value="outro">Outro</option>
-                                    </select>
-                                ) : (
-                                    <input
-                                        id={key}
-                                        name={key}
-                                        type={key === "age" ? "number" : "text"}
-                                        value={userInfo[key]}
-                                        onChange={handleChange}
-                                        disabled={!isEditing}
-                                    />
-                                )}
+                                <input
+                                    id={key}
+                                    name={key}
+                                    type={key === "age" ? "number" : "text"}
+                                    value={userInfo[key]}
+                                    onChange={handleChange}
+                                    disabled={!isEditing}
+                                />
                             </div>
                         ))}
                     </div>
                     <div className="emergency-contacts">
-                        <h2>Contatos de Emergência</h2>
-                        {Object.keys(emergencyContacts).map((key, index) => (
+                        <h2>Minha Casa</h2>
+                        {Object.keys(condominiumInfo).map((key, index) => (
                             <div key={index} className="field-container">
                                 <label htmlFor={key}>{formatLabel(key)}</label>
                                 <input
                                     id={key}
                                     name={key}
                                     type="text"
-                                    value={emergencyContacts[key]}
+                                    value={condominiumInfo[key]}
                                     onChange={handleChange}
                                     disabled={!isEditing}
                                 />

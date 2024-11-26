@@ -43,11 +43,13 @@ export default function RegisterPage() {
                         required
                     >
                         <option value="" disabled selected>
-                            Cargo
+                            Cargo  
                         </option>
                         <option value="user">Usuário</option>
                         <option value="sind">Síndico</option>
+                        <option value="sub-sind">Sub-Síndico</option>
                         <option value="admin">Administrador</option>
+
                     </select>
                     <button onClick={()=> {window.location.href="/login"}} type="submit" className="submit-button">
                         Cadastrar-se
