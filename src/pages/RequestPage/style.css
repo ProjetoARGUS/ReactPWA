@@ -21,6 +21,13 @@
   margin-top: 20px;
 }
 
+.contacts-list .img-perfil{
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: center;
+}
+
 /* Cartão de contato */
 .contact-card {
   display: flex;
@@ -139,9 +146,6 @@
 }
 
 /* Seu CSS principal */
-.left-panel.hide {
-  display: none;
-}
 
 .chat-area.show {
   display: block;
@@ -184,6 +188,9 @@
 }
 
 @media (max-width: 768px) {
+  .left-panel.hide {
+    display: none;
+  }
   .requests-page {
     flex-direction: column;
   }
