@@ -27,6 +27,10 @@
     background-color: var(--background-foreground-color);
     width: 100%;
   }
+
+  .assembly-forms label{
+    font-weight: bold;
+  }
   
   .assembly-forms textarea {
     resize: none;

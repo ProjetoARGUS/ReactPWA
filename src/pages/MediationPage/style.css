@@ -53,11 +53,9 @@
 .mediation-forms textarea,
 .mediation-forms select {
   padding: 0.25rem;
-  border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
   width: 100%; /* Ocupa todo o espaço da coluna */
-  border: 1px solid var(--main-color);
   background-color: var(--background-foreground-color);
 }
 
@@ -98,9 +96,139 @@
   background-color: var(--medium-blue-hover);
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
+/* Estilo base do chat */
+.chat-popup {
+  position: fixed;
+  top: 10vh;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Estilo do cabeçalho do chat */
+.chat-popup h2 {
+  background: var(--main-color);
+  color: white;
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Conteúdo do chat */
+.chat-popup .chat-content {
+  padding: 10px;
+  flex: 1;
+  overflow-y: auto;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Caixa de texto */
+.chat-popup textarea {
+  width: 100%;
+  border: 1px solid #333;
+  padding: 10px;
+  outline: none;
+  resize: none;
+  height: 50px;
+}
+
+/* Botões */
+.chat-popup button {
+  width: 100%;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Botão flutuante */
+.floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: var(--main-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.chatbot-message{
+  max-width: 60%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  word-wrap: break-word;
+}
+
+.chatbot-message.sent {
+  background-color: var(--light-blue);
+  align-self: flex-end;
+  text-align: right;
+  margin-left: auto;
+}
+
+.chatbot-message.received {
+  background-color: #f1f0f0;
+  align-self: flex-start;
+  text-align: left;
+  margin-right: auto;
+}
+
+.chatbot-message .timestamp{
+  color: var(--foreground-color);
+  font-size: 0.75rem;
+}
+
+.submitMessage{
+  margin: 0.25rem;
+  background-color: var(--light-blue);
+  color: var(--main-color);
+}
+
+.quitChatBot{
+  margin: 0.25rem;
+  background-color: var(--web-orange-500);
+  color: var(--main-color);
+}
+
+@media (min-width: 768px) {
+  .chat-popup {
+      width: 300px;
+      height: 90%;
+      transform: translateX(100%);
+  }
+
+  .chat-popup.visible {
+      transform: translateX(0);
+  }
+}
+
+@media (max-width: 767px) {
   .mediation-forms .fields-group {
     grid-template-columns: 1fr;
+  }
+  .chat-popup {
+      width: 100%;
+      height: 100%;
+      top: 0;
+      transform: translateY(100%);
+  }
+
+  .chat-popup.visible {
+      transform: translateY(0);
   }
 }
