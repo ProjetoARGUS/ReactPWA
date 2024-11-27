@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./style.css";
 import notificacaoIcon from "../../assets/HomeIcons/notificacao.svg";
+import logoutIcon from "../../assets/HomeIcons/logout.svg";
 import NotificationBar from "../../components/NotificationBar";
 
 export default function Header() {
@@ -23,6 +24,9 @@ export default function Header() {
           <div className="icons">
             <button onClick={toggleMenu} className="notification-button">
               <img src={notificacaoIcon} alt="Notificações" />
+            </button>
+            <button onClick={()=>{window.location.href="/login"}} className="logout-button">
+              <img src={logoutIcon} alt="Logout" />
             </button>
           </div>
         </nav>

@@ -60,7 +60,7 @@ export default function UpKeepPage() {
                         </section>
                     </fieldset>
                     <div>
-                        <label htmlFor="description">Descrição</label>
+                        <label className='poppins-bold' htmlFor="description">Descrição</label>
                         <textarea id="description" name="description" rows="4"></textarea>
                     </div>
                     <div className='buttons'>

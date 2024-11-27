@@ -51,11 +51,16 @@
   }
 }
 
-/* Estilos gerais */
-.notification-button {
+.notification-button, .logout-button {
   background: none;
   border: none;
   cursor: pointer;
+  margin: 0 1rem;
+  height: 3vh;
+}
+
+.notification-button img, .logout-button img{
+  height: 100%;
 }
 
 .notification-menu {
