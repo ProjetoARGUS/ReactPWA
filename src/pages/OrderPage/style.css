@@ -3,11 +3,11 @@
 
 .order-page {
     display: flex;
-    height: 100vh;
+    min-height: 90vh;
 }
 
 .left-sidebar {
-    width: 250px; /* Largura fixa para o chat */
+    width: 250px;
     background-color: #f5f5f5;
     padding: 20px;
     display: flex;
@@ -17,11 +17,15 @@
 }
 
 .main-content {
-    flex-grow: 1; /* Ocupa o restante do espaço */
+    flex-grow: 1;
     padding: 20px;
     background-color: #ffffff;
-    overflow-y: auto; /* Para permitir rolagem, caso necessário */
-    text-align: center; /* Centraliza o conteúdo */
+    overflow-y: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .page-title {
@@ -92,10 +96,191 @@
 }
 
 .order-list {
-    display: flex; /* Exibe os filhos em linha */
-    gap: 1rem; /* Espaço entre os cards */
-    overflow-x: auto; /* Habilita o scroll horizontal */
-    padding: 10px; /* Espaçamento interno */
-    scroll-behavior: smooth; /* Suaviza o scroll */
-    white-space: nowrap; /* Impede que os elementos quebrem a linha */
+    width: 90%;
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 10px;
+}
+
+.register-button {
+    display: inline-block;
+    margin: 1rem 0;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--main-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.register-button:hover {
+    background-color: var(--medium-blue-hover);
+    transform: scale(1.05);
+}
+
+.reservations-forms {
+    width: 90%;
+    max-width: 1200px;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--main-color);
+}
+
+.fields-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.field-container label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.reservations-forms input[type="text"],
+.reservations-forms input[type="date"],
+.reservations-forms select,
+.reservations-forms textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--background-foreground-color);
+    transition: border-color 0.3s ease;
+}
+
+.reservations-forms textarea {
+    resize: none;
+}
+
+.reservations-forms input:focus,
+.reservations-forms select:focus,
+.reservations-forms textarea:focus {
+    border-color: var(--foreground-color);
+    outline: none;
+}
+
+.description-container {
+    grid-column: span 2;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.buttons button {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.buttons button[type="submit"] {
+    background-color: var(--foreground-color);
+    color: var(--background-main-color);
+}
+
+.buttons button[type="submit"]:hover {
+    background-color: var(--web-orange-500);
+    transform: scale(1.05);
+}
+
+.buttons button[type="reset"] {
+    background-color: var(--medium-blue);
+    color: var(--background-main-color);
+}
+
+.buttons button[type="reset"]:hover {
+    background-color: var(--medium-blue-hover);
+    transform: scale(1.05);
+}
+
+@media (max-width: 1024px) {
+    .order-page {
+        flex-direction: column;
+    }
+
+    .left-sidebar {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .main-content {
+        padding: 10px;
+    }
+
+    .register-button {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .fields-group {
+        grid-template-columns: 1fr;
+    }
+
+    .description-container {
+        grid-column: span 1;
+    }
+
+    .reservations-forms {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .buttons button {
+        width: 100%;
+        padding: 1rem 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .fields-group {
+        grid-template-columns: 1fr;
+    }
+
+    .description-container {
+        grid-column: span 1;
+    }
+
+    .chat-box {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .chat-header h2 {
+        font-size: 14px;
+    }
+
+    .chat-input {
+        font-size: 12px;
+    }
+
+    .order-list .order-card {
+        width: 100%;
+    }
+
+    .order-card img{
+        width: 90%;
+    }
+
+    .register-button {
+        font-size: 0.9rem;
+        width: 80%;
+    }
 }

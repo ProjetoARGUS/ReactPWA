@@ -4,7 +4,9 @@ import OrderIcon from '../../assets/HomeIcons/encomendas.svg';
 export default function OrderCard({ order }) {
     return (
         <div className="order-card">
-            <img src={order.image} className="img-card" alt={`Imagem da encomenda ${order.id}`} />
+            <div className="img-card">
+                <img src={order.image} alt={`Imagem da encomenda ${order.id}`} />
+            </div>
             <div className="order-code">
                 <div className="icon-placeholder">
                     <img src={OrderIcon} alt="icon-placeholder"/>
