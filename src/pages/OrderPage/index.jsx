@@ -236,7 +236,7 @@ export default function OrderPage() {
                       rows="4"
                       value={formData.description}
                       onChange={handleChange}
-                      placeholder="Descreva aqui o que vai acontecer"
+                      placeholder="Descreva aqui..."
                     ></textarea>
                   </div>
                 </div>

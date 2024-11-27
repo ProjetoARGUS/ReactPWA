@@ -73,7 +73,7 @@ export default function HomePage(){
                     <section className="comunicados-section">
                         <div className='div-title'>
                             <h1 className='title'><img src={comunicadosIcon} alt="" /> Comunicados</h1>
-                            <input className='icon-button' type="button" value="Ver Todos" />
+                            <input className='icon-button' type="button" value="Ver Todos" onClick={()=>{window.location.href="/news"}} />
                         </div>
                         <div className='comunicados-content'>
                             {

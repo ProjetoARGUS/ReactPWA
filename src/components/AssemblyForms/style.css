@@ -21,7 +21,6 @@
   .assembly-forms textarea,
   .assembly-forms select {
     padding: 0.5rem;
-    border: 1px solid var(--main-color);
     border-radius: 4px;
     font-size: 1rem;
     background-color: var(--background-foreground-color);
