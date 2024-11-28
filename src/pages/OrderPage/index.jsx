@@ -192,7 +192,7 @@ export default function OrderPage() {
 
         <div className="main-content">
             {orderSend ? (
-              <form className="reservations-forms" action="#" method="POST">
+              <form className="order-forms" action="#" method="POST">
                 <div className="fields-group">
                   {fields.map((field, index) => (
                     <div key={index} className="field-container">

@@ -6,7 +6,7 @@
     align-items: center;
     background-color: #f5f5f5;
     padding: 2rem;
-    height: 90vh;
+    min-height: 90vh;
 }
 
 .profile-page h1 {
@@ -71,6 +71,19 @@
     background-color: #fb8501;
     color: #ffffff;
 }
+
+.profile-forms input[type="text"],
+.profile-forms input[type="email"],
+.profile-forms input[type="tel"],
+.profile-forms textarea {
+  padding: 0.5rem;
+  border: 0.5px solid #d0cfcf;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: var(--background-foreground-color);
+  width: 100%;
+}
+
 .profile-forms input[type="text"]:focus,
 .profile-forms input[type="email"]:focus,
 .profile-forms input[type="tel"]:focus,

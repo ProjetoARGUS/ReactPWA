@@ -16,7 +16,7 @@ export default defineConfig({
         name: 'ARGUS',
         short_name: 'ARGUS',
         description: 'Projeto ARGUS: O Guardião da Vida Comunitária',
-        theme_color: '#0080D0',
+        theme_color: '#fb8501',
         "icons": [
           {
             "src": "/icons/windows11/SmallTile.scale-100.png",

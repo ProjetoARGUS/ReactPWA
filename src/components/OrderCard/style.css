@@ -88,3 +88,9 @@
     color: #666;
     margin: 0;
 }
+
+@media (max-width: 1024px){
+    .order-card .img-card{
+        width: 15rem;
+    }
+}

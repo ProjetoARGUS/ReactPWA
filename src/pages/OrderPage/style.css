@@ -16,10 +16,10 @@
     align-items: center;
 }
 
-.main-content {
+.order-page .main-content {
     flex-grow: 1;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: var(--background-foreground-color);
     overflow-y: auto;
     text-align: center;
     display: flex;
@@ -122,7 +122,8 @@
     transform: scale(1.05);
 }
 
-.reservations-forms {
+.order-forms {
+    text-align: start;
     width: 90%;
     max-width: 1200px;
     padding: 2rem;
@@ -146,26 +147,25 @@
     color: #333;
 }
 
-.reservations-forms input[type="text"],
-.reservations-forms input[type="date"],
-.reservations-forms select,
-.reservations-forms textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+.order-forms input[type="text"],
+.order-forms input[type="date"],
+.order-forms select,
+.order-forms textarea {
+    padding: 0.5rem;
+    border: 0.5px solid #d0cfcf;
+    border-radius: 4px;
     font-size: 1rem;
     background-color: var(--background-foreground-color);
-    transition: border-color 0.3s ease;
+    width: 100%;
 }
 
-.reservations-forms textarea {
+.order-forms textarea {
     resize: none;
 }
 
-.reservations-forms input:focus,
-.reservations-forms select:focus,
-.reservations-forms textarea:focus {
+.order-forms input:focus,
+.order-forms select:focus,
+.order-forms textarea:focus {
     border-color: var(--foreground-color);
     outline: none;
 }
@@ -216,12 +216,12 @@
         flex-direction: column;
     }
 
-    .left-sidebar {
+    .order-page .main-content{
         width: 100%;
-        padding: 10px;
     }
 
-    .main-content {
+    .left-sidebar {
+        width: 100%;
         padding: 10px;
     }
 
@@ -238,7 +238,7 @@
         grid-column: span 1;
     }
 
-    .reservations-forms {
+    .order-forms {
         width: 100%;
         padding: 1rem;
     }

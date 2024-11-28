@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: space-around;
   background-color: var(--background-foreground-color);
-  height: 90vh;
+  min-height: 90vh;
 }
 
 .upkeep-page h1 {
@@ -37,12 +37,12 @@
 .upkeep-forms input[type="email"],
 .upkeep-forms input[type="tel"],
 .upkeep-forms textarea {
-  padding: 0.25rem;
-  border: 1px solid #ddd;
+  padding: 0.5rem;
+  border: 0.5px solid #d0cfcf;
   border-radius: 4px;
   font-size: 1rem;
-  width: 100%; /* Ocupa todo o espaço da coluna */
   background-color: var(--background-foreground-color);
+  width: 100%;
 }
 
 .upkeep-forms textarea {

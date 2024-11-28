@@ -30,7 +30,7 @@
 .login-forms{
     background-color: #eeeeec;
     border-radius: 25px;
-    padding: 0 15vw;
+    padding: 2rem 15vw;
     width: 55vw;
     height: 80vh;
     display: flex;
@@ -135,7 +135,7 @@
 @media (max-width: 1400px) {
     .login-page {
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-end;
     }
     .login-forms {
         width: 100%;

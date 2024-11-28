@@ -28,7 +28,7 @@
 /* Camada sobreposta para dar efeito de profundidade */
 .card-outlined-container  .icon-overlay {
     position: absolute;
-    left: 20px;  /* Distância ajustada para melhor visibilidade */
+    left: 10px;  /* Distância ajustada para melhor visibilidade */
     width: 100%;  /* Ajustado para cobrir a área do contêiner */
     height: 100%; /* Ajustado para cobrir a área do contêiner */
     background-color: var(--light-blue);
