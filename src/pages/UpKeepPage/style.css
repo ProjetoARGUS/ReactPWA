@@ -42,7 +42,6 @@
   border-radius: 4px;
   font-size: 1rem;
   width: 100%; /* Ocupa todo o espaço da coluna */
-  border: 1px solid var(--main-color);
   background-color: var(--background-foreground-color);
 }
 
@@ -141,4 +140,11 @@
   .upkeep-page button {
     font-size: 12px; /* Ajusta tamanho do texto dos botões */
   }
+}
+.upkeep-forms input[type="text"]:focus,
+.upkeep-forms input[type="email"]:focus,
+.upkeep-forms input[type="tel"]:focus,
+.upkeep-forms textarea:focus {
+  border: 1px solid var(--web-orange-500); /* Altere para a cor laranja desejada */
+  outline: none; /* Remove o contorno padrão do foco */
 }

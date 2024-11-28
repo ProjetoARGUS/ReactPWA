@@ -14,3 +14,14 @@ a{
   text-decoration: none;
   color: var(--main-color);
 }
+
+input[type="date"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid var(--web-orange-500); /* Altere para a cor laranja desejada */
+  outline: none; /* Remove o contorno padrão do foco */
+}

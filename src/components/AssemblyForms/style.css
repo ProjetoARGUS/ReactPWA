@@ -6,100 +6,110 @@
     border-radius: 8px;
     display: grid;
     gap: 1.5rem;
-  }
-  
-  .assembly-forms .inputs-container {
+}
+
+.assembly-forms .inputs-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-  }
-  
-  .assembly-forms input[type="text"],
-  .assembly-forms input[type="email"],
-  .assembly-forms input[type="tel"],
-  .assembly-forms input[type="date"],
-  .assembly-forms textarea,
-  .assembly-forms select {
+}
+
+.assembly-forms input[type="text"],
+.assembly-forms input[type="email"],
+.assembly-forms input[type="tel"],
+.assembly-forms input[type="date"],
+.assembly-forms textarea,
+.assembly-forms select {
     padding: 0.5rem;
+    border: 0.5px solid #d0cfcf;
     border-radius: 4px;
     font-size: 1rem;
     background-color: var(--background-foreground-color);
     width: 100%;
-  }
+}
 
-  .assembly-forms label{
+.assembly-forms input[type="text"]:focus,
+.assembly-forms input[type="email"]:focus,
+.assembly-forms input[type="tel"]:focus,
+.assembly-forms input[type="date"]:focus,
+.assembly-forms textarea:focus,
+.assembly-forms select:focus {
+    border: 1px solid var(--web-orange-500); /* Altere para a cor laranja desejada */
+  outline: none; /* Remove o contorno padrão do foco */
+}
+
+.assembly-forms label {
     font-weight: bold;
-  }
-  
-  .assembly-forms textarea {
+}
+
+.assembly-forms textarea {
     resize: none;
-  }
-  
-  .assembly-forms .checkbox-group {
+}
+
+.assembly-forms .checkbox-group {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
-  }
-  
-  .assembly-forms input[type="checkbox"] {
+}
+
+.assembly-forms input[type="checkbox"] {
     margin-right: 10px;
-  }
-  
-  .assembly-forms .form-buttons {
+}
+
+.assembly-forms .form-buttons {
     margin-top: 2.5rem;
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
-  }
-  
-  .assembly-forms button {
+}
+
+.assembly-forms button {
     padding: 10px 20px;
     font-size: 14px;
     font-weight: bold;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
-  }
-  
-  .assembly-forms button[type="submit"] {
+}
+
+.assembly-forms button[type="submit"] {
     background-color: var(--foreground-color);
     color: var(--background-main-color);
-  }
-  
-  .assembly-forms button[type="submit"]:hover {
+}
+
+.assembly-forms button[type="submit"]:hover {
     background-color: var(--web-orange-500);
-  }
-  
-  .assembly-forms button[type="reset"] {
+}
+
+.assembly-forms button[type="reset"] {
     background-color: var(--medium-blue);
     color: var(--background-main-color);
-  }
-  
-  .assembly-forms button[type="reset"]:hover {
+}
+
+.assembly-forms button[type="reset"]:hover {
     background-color: var(--medium-blue-hover);
-  }
-  
-  @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
     .assembly-forms .inputs-container {
-      grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
-  
+
     .assembly-forms .checkbox-group {
-      grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
-  
+
     .assembly-forms .form-buttons {
-      justify-content: center;
+        justify-content: center;
     }
-  }
-  
-  @media (max-width: 480px) {
+}
+
+@media (max-width: 480px) {
     .assembly-forms .checkbox-group {
-      grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
-    
+
     .assembly-forms button {
-      font-size: 12px;
+        font-size: 12px;
     }
-  }
-  
+}

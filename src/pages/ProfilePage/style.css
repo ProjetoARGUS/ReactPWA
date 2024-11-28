@@ -71,3 +71,10 @@
     background-color: #fb8501;
     color: #ffffff;
 }
+.profile-forms input[type="text"]:focus,
+.profile-forms input[type="email"]:focus,
+.profile-forms input[type="tel"]:focus,
+.profile-forms textarea:focus {
+  border: 1px solid var(--web-orange-500); /* Altere para a cor laranja desejada */
+  outline: none; /* Remove o contorno padrão do foco */
+}

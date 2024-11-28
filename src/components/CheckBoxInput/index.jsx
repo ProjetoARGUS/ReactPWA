@@ -1,5 +1,3 @@
-import './style.css';
-
 /* eslint-disable react/prop-types */
 export default function CheckBoxInput({ Id, Name, Label, Require }){
     return (
