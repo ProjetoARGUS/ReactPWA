@@ -2,7 +2,7 @@
   "name": "ARGUS",
   "short_name": "ARGUS",
   "description": "Projeto ARGUS: O Guardião da Vida Comunitária",
-  "theme_color": "#fb8501",
+  "theme_color": "#219dbcbf",
   "background_color": "#ffffff",
   "display": "standalone",
   "start_url": "/",
