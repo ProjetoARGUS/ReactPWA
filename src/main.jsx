@@ -18,6 +18,7 @@ import RulesPage from './pages/RulesPage';
 import FaqPage from './pages/FaqPage';
 import RequestPage from './pages/RequestPage';
 import NewsPage from './pages/NewsPage';
+import FinancialPage from './pages/FinancialPage';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -39,6 +40,7 @@ createRoot(document.getElementById('root')).render(
                 <Route path='/faq' element={<FaqPage/>} />
                 <Route path='/request' element={<RequestPage/>} />
                 <Route path='/news' element={<NewsPage/>} />
+                <Route path='/financial' element={<FinancialPage/>} />
             </Routes>
         </Router>
   </StrictMode>,

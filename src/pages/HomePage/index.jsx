@@ -32,7 +32,7 @@ export default function HomePage(){
     const service_items = [
         {Icon: manutencaoIcon, Title: "Manutenção", Nav: "/upKeep"},
         {Icon: chatIcon, Title: "Solicitações", Nav: "/request"},
-        {Icon: financeiroIcon, Title: "Financeiro", Nav: ""},
+        {Icon: financeiroIcon, Title: "Financeiro", Nav: "/financial"},
         {Icon: encomendasIcon, Title: "Encomendas", Nav: "/order"},
         {Icon: faqIcon, Title: "Dúvidas (FAQ)", Nav: "/faq"},
         {Icon: conflitosIcon, Title: "Conflitos", Nav: "/mediation"},
