@@ -57,6 +57,8 @@ export default function FinancialPage() {
             <div className="summary-card">
               <p>Taxas Pendentes</p>
               <h3>R$ {totalPendencias.toFixed(2).replace(".", ",")}</h3>
+              {/* Botão Pix */}
+              <button className="pix-button">Pix</button>
             </div>
           </div>
           <section className="despesas">
@@ -77,14 +79,20 @@ export default function FinancialPage() {
                     <td>{despesa.data}</td>
                     <td
                       className={`valor ${
-                        despesa.status === "Pago" ? "valor-pago" : "valor-em-aberto"
+                        despesa.status === "Pago"
+                          ? "valor-pago"
+                          : "valor-em-aberto"
                       }`}
                     >
                       {despesa.valor}
                     </td>
-                    <td className={`status ${
-                      despesa.status === "Pago" ? "status-pago" : "status-em-aberto"
-                    }`}>
+                    <td
+                      className={`status ${
+                        despesa.status === "Pago"
+                          ? "status-pago"
+                          : "status-em-aberto"
+                      }`}
+                    >
                       {despesa.status}
                     </td>
                   </tr>
