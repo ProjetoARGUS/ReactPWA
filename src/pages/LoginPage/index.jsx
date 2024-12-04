@@ -1,6 +1,39 @@
+import { useState } from "react";
 import "./style.css";
+import axios from 'axios';
 
 export default function LoginPage() {
+  const [cpf, SetCpf] = useState('');
+  const [senha, SetSenha] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log({cpf, senha})
+  
+    try {
+      const response = await axios.post("/spring/auth/login", {
+        "cpf": cpf,
+        "password": senha,
+      });
+
+      if (response.status === 200) {
+        const user = localStorage.setItem("authToken", response.data.token);
+        console.log(localStorage.getItem("authToken"));
+        window.location.href="/home";
+      }
+    } catch (error) {
+      console.log(error)
+      if (error.response) {
+        setErrorMessage(
+          error.response.data.message || "CPF ou senha inválidos. Tente novamente."
+        );
+      } else {
+        setErrorMessage("Erro ao conectar com o servidor. Tente novamente mais tarde.");
+      }
+    }
+  };
   return (
     <>
       <section className="login-page">
@@ -14,13 +47,15 @@ export default function LoginPage() {
             <br />
             Para continuar, digite seu CPF e senha.
           </p>
-          <form action="" method="post">
+          <form onSubmit={handleSubmit} method="post">
             <input
               className="poppins-semibold"
               type="text"
               id="cpf"
               name="cpf"
               placeholder="CPF*"
+              value={cpf}
+              onChange={(e)=> {SetCpf(e.target.value)}}
               required
             />
             <input
@@ -29,6 +64,8 @@ export default function LoginPage() {
               id="password"
               name="password"
               placeholder="Senha*"
+              value={senha}
+              onChange={(e)=> {SetSenha(e.target.value)}}
               required
             />
 
@@ -44,9 +81,7 @@ export default function LoginPage() {
               </a>
             </div>
 
-            <a href="/home">
-              <input className="button" type="button" value="ENTRAR" />
-            </a>
+            <button className="button" type="submit">ENTRAR</button>
           </form>
 
           {/* Link de cadastro */}
