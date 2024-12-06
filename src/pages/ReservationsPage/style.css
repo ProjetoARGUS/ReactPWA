@@ -44,6 +44,7 @@
 
 .reservations-forms input[type="date"],
 .reservations-forms input[type="text"],
+.reservations-forms input[type="time"],
 .reservations-forms textarea,
 .reservations-forms select {
   padding: 0.25rem;

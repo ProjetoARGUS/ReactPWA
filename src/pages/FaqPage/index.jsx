@@ -103,33 +103,36 @@ export default function FaqPage() {
         <>
             <Header />
             <section className="faq-page">
-                <div className="faq-search">
-                    <div className="search">
-                        <input
-                            type="text"
-                            placeholder="Pesquisar"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        <button className="search-btn" onClick={() => setSearchTerm(searchTerm)}>
-                            <FaSearch />
-                        </button>
-                    </div>
-                </div>
-
-                <div className="dropdown-container">
-                    {filteredquestions.map((rule, index) => (
-                        <div
-                            key={index}
-                            className={`dropdown ${openDropdown === index ? 'open' : ''}`}
-                            onClick={() => toggleDropdown(index)}
-                        >
-                            <div className="dropdown-header">{rule.title}</div>
-                            {openDropdown === index && (
-                                <div className="dropdown-content">{rule.content}</div>
-                            )}
+                <div className="container">
+                    <h1 className="title">Dúvidas Frequentes</h1>
+                    <div className="faq-search">
+                        <div className="search">
+                            <input
+                                type="text"
+                                placeholder="Pesquisar"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                            <button className="search-btn" onClick={() => setSearchTerm(searchTerm)}>
+                                <FaSearch />
+                            </button>
                         </div>
-                    ))}
+                    </div>
+
+                    <div className="dropdown-container">
+                        {filteredquestions.map((rule, index) => (
+                            <div
+                                key={index}
+                                className={`dropdown ${openDropdown === index ? 'open' : ''}`}
+                                onClick={() => toggleDropdown(index)}
+                            >
+                                <div className="dropdown-header">{rule.title}</div>
+                                {openDropdown === index && (
+                                    <div className="dropdown-content">{rule.content}</div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
         </>

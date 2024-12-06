@@ -1,40 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../../components/Header";
-import comunicado1 from "../../assets/ComunicadosImg/comunicado1.png";
-import comunicado2 from "../../assets/ComunicadosImg/comunicado2.png";
-import comunicado3 from "../../assets/ComunicadosImg/comunicado3.png";
-import comunicado4 from "../../assets/ComunicadosImg/comunicado4.png";
 import "./style.css";
+import axios from "axios";
 
 export default function NewsPage() {
   const [newsSend, setNewsSend] = useState(false);
-  const comunicados_items = [
-    {Img: comunicado1, Title: "Quadra em Manutenção", Desc: "A quadra esportiva passará por manutenção no dia 11/10 e ficará temporariamente indisponível para uso."},
-    {Img: comunicado2, Title: "Pintura dos blocos", Desc: "Aviso aos condôminos: A pintura dos blocos começará no dia 18/11. Pedimos a colaboração e compreensão de todos..."},
-    {Img: comunicado3, Title: "Manuntenção na rua 03 ", Desc: "Aviso aos condôminos: A Rua 03 passará por manutenção no dia 25/11, podendo haver restrição de acesso temporária..."},
-    {Img: comunicado4, Title: "interrupção Temporaria de água", Desc: "Aviso aos condôminos: Haverá interrupção temporária no abastecimento de água no dia 28/11 devido a manutenção..."},
-    {Img: comunicado2, Title: "Pintura dos blocos", Desc: "Aviso aos condôminos: A pintura dos blocos começará no dia 18/11. Pedimos a colaboração e compreensão de todos..."},
-    {Img: comunicado3, Title: "Manuntenção na rua 03 ", Desc: "Aviso aos condôminos: A Rua 03 passará por manutenção no dia 25/11, podendo haver restrição de acesso temporária..."},
-    {Img: comunicado4, Title: "interrupção Temporaria de água", Desc: "Aviso aos condôminos: Haverá interrupção temporária no abastecimento de água no dia 28/11 devido a manutenção..."},
-    {Img: comunicado2, Title: "Pintura dos blocos", Desc: "Aviso aos condôminos: A pintura dos blocos começará no dia 18/11. Pedimos a colaboração e compreensão de todos..."},
-    {Img: comunicado3, Title: "Manuntenção na rua 03 ", Desc: "Aviso aos condôminos: A Rua 03 passará por manutenção no dia 25/11, podendo haver restrição de acesso temporária..."},
-    {Img: comunicado4, Title: "interrupção Temporaria de água", Desc: "Aviso aos condôminos: Haverá interrupção temporária no abastecimento de água no dia 28/11 devido a manutenção..."},
-]
+  const [comunicadosItems, setComunicadosItems] = useState([]);
 
-  const fields = [
-    { Id: "reservation_code", Label: "Titulo", Type: "text", Require: true },
-    { Id: "type", Label: "Urgência", Type: "select", Require: true, Options: ["Baixa", "Media", "Alta"] },
-    { Id: "date", Label: "Data do recebimento", Type: "date", Require: true },
-    
-  ];
+  const loading = async () => {
+    try {
+      const response = await axios.get("/spring/comunicado", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`, // Adicione este cabeçalho, se necessário
+        },
+      });
+      setComunicadosItems(response.data); // Atualiza o estado com os dados da API
+      console.log("Dados carregados:", response.data); // Mostra os dados carregados no console
+    } catch (error) {
+      console.error("Erro ao carregar comunicados:", error);
+    }
+  };
+
+  useEffect(() => {
+    loading();
+  }, []);
 
   const [formData, setFormData] = useState({
-    reservation_code: "",
-    record_number: "",
-    type: "",
-    date: "",
-    recipient: "",
-    received_by: "",
+    title: "",
     description: "",
   });
 
@@ -46,19 +38,35 @@ export default function NewsPage() {
     }));
   };
 
-  const submitSend = (e) => {
+  const submitSend = async (e) => {
     e.preventDefault();
-    console.log("Formulário enviado:", formData);
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    const newItem = {
+      condominioNome: user.condominioNome,
+      titulo: formData.title,
+      mensagem: formData.description,
+    };
+    console.log(newItem);
+    try {
+      const response = await axios.post(
+        "/spring/comunicado",
+        newItem, // Corpo da requisição
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
+        }
+      );
+      console.log("Resposta da API:", response.data);
+    } catch (error) {
+      console.error("Erro ao enviar comunicado:", error);
+    }
+    resetSend();
   };
 
   const resetSend = () => {
     setFormData({
-      reservation_code: "",
-      record_number: "",
-      type: "",
-      date: "",
-      recipient: "",
-      received_by: "",
+      title: "",
       description: "",
     });
     setNewsSend(false);
@@ -72,65 +80,57 @@ export default function NewsPage() {
           {newsSend ? (
             <form className="news-forms" onSubmit={submitSend}>
               <div className="fields-group">
-                {fields.map((field, index) => (
-                  <div key={index} className="field-container">
-                    <label htmlFor={field.Id}>{field.Label}</label>
-                    {field.Type === "select" ? (
-                      <select
-                        id={field.Id}
-                        name={field.Id}
-                        required={field.Require}
-                        value={formData[field.Id]}
-                        onChange={handleChange}
-                      >
-                        <option value="" disabled>Selecione</option>
-                        {field.Options.map((option, idx) => (
-                          <option key={idx} value={option}>{option}</option>
-                        ))}
-                      </select>
-                    ) : (
-                      <input
-                        id={field.Id}
-                        name={field.Id}
-                        type={field.Type}
-                        required={field.Require}
-                        value={formData[field.Id]}
-                        onChange={handleChange}
-                      />
-                    )}
-                  </div>
-                ))}
+                <div className="field-container">
+                  <label htmlFor="news_code">Título</label>
+                  <input
+                    id="news_code"
+                    name="title"
+                    type="text"
+                    required={true}
+                    value={formData.title}
+                    onChange={handleChange}
+                  />
+                </div>
                 <div className="desc-div">
-                  <label className="poppins-bold" htmlFor="description">Descrição</label>
+                  <label className="poppins-bold" htmlFor="description">
+                    Descrição
+                  </label>
                   <textarea
                     id="description"
                     name="description"
                     rows="4"
                     value={formData.description}
                     onChange={handleChange}
-                    placeholder="Descreva aqui..."
+                    placeholder="Insira a descrição do comunicado..."
                   ></textarea>
                 </div>
               </div>
               <div className="buttons">
                 <button type="submit">Enviar</button>
-                <button className="resetNews" type="button" onClick={resetSend}>Cancelar</button>
+                <button className="resetNews" type="button" onClick={resetSend}>
+                  Cancelar
+                </button>
               </div>
             </form>
           ) : (
             <>
               <h1>Bem-vindo! Aqui você encontrará informações importantes</h1>
-              <button className="register-button" onClick={() => setNewsSend(true)}>Cadastrar Novo Comunicado</button>
+              <button
+                className="register-button"
+                onClick={() => setNewsSend(true)}
+              >
+                Cadastrar Novo Comunicado
+              </button>
               <div className="news-list">
-                {comunicados_items.map((comm, index) => (
-                  <div key={index} className="info-card">
-                    <div className="news-img">
-                      <img src={comm.Img} alt={comm.Title} />
+                {comunicadosItems
+                  .slice()
+                  .reverse()
+                  .map((comm, index) => (
+                    <div key={index} className="info-card">
+                      <h2>{comm.titulo}</h2>
+                      <p>{comm.mensagem}</p>
                     </div>
-                    <h2>{comm.Title}</h2>
-                    <p>{comm.Desc}</p>
-                  </div>
-                ))}
+                  ))}
               </div>
             </>
           )}

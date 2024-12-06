@@ -25,7 +25,13 @@ export default function Header() {
             <button onClick={toggleMenu} className="notification-button">
               <img src={notificacaoIcon} alt="Notificações" />
             </button>
-            <button onClick={()=>{window.location.href="/login"}} className="logout-button">
+            <button
+              onClick={() => {
+                localStorage.removeItem("authToken");
+                window.location.href = "/login";
+              }}
+              className="logout-button"
+            >
               <img src={logoutIcon} alt="Logout" />
             </button>
           </div>

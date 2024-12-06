@@ -19,8 +19,7 @@ export default function LoginPage() {
       });
 
       if (response.status === 200) {
-        const user = localStorage.setItem("authToken", response.data.token);
-        console.log(localStorage.getItem("authToken"));
+        localStorage.setItem("authToken", response.data.token);
         window.location.href="/home";
       }
     } catch (error) {
@@ -84,12 +83,12 @@ export default function LoginPage() {
             <button className="button" type="submit">ENTRAR</button>
           </form>
 
-          {/* Link de cadastro */}
+          {/* Link de cadastro
           <div className="register-link">
             <p className="poppins-regular">
               Ainda não tem uma conta? <a href="/register">Cadastre-se</a>
             </p>
-          </div>
+          </div> */}
         </div>
       </section>
     </>
