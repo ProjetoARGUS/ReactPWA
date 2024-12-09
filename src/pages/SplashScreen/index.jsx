@@ -1,12 +1,19 @@
+import { useEffect } from 'react';
 import './style.css'
 
 export default function SplashScreen(){
-    // Lógica para verificar se o usuario tem credenciamento salvo no dispositivoc
+    useEffect(()=>{
+        if (localStorage.getItem("currentUser")) {
+            window.location.href = "/home";
+        } else {
+            window.location.href = "/login";
+        }
+      },[])
 
     return(
         <>
             <section className="splash-screen-page">
-                <a href="/login"><img src="/logo1.png" alt="Argus" /></a>
+                <img src="/logo1.png" alt="Argus" />
             </section>
         </>
     )

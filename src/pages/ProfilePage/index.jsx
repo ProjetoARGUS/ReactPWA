@@ -1,57 +1,118 @@
 import Header from '../../components/Header';
 import { useState, useEffect } from 'react';
 import './style.css';
+import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
 export default function ProfilePage() {
     const [isEditing, setIsEditing] = useState(false);
+    const [currentUser, setCurrentUser] = useState({});
+    const [userInfo, setUserInfo] = useState({});
+    const [condominiumInfo, setCondominiumInfo] = useState({});
+    const token = localStorage.getItem("authToken");
 
-    const [userInfo, setUserInfo] = useState({
-        Nome: "João",
-        Sobrenome: "Silva",
-        CPF: "000.000.000-00",
-        Telefone: "(81) 91234-5678",
-    });
+    const handleUser = () => {
+        try {      
+          // Use currentUser diretamente aqui
+          setUserInfo({
+            senha: currentUser.senha,
+            tipoDoUsuario: currentUser.tipoDoUsuario,
+            id: currentUser.id,
+            cpf: jwtDecode(token).sub,
+            nome: currentUser.nome,
+            telefone: currentUser.telefone,
+          });
+      
+          setCondominiumInfo({
+            condominioNome: currentUser.condominioNome,
+            apartamento: currentUser.apartamento,
+            bloco: currentUser.bloco,
+          });
+        } catch (error) {
+          console.error("Error during request setup:", error.message);
+        }
+      };
+      
 
-    const [condominiumInfo, setCondominiumInfo] = useState({
-        Condominio: "Encanta Moça I",
-        Apartamento: "407",
-        Bloco: "2",
-    });
+    useEffect(() => {
+        if (localStorage.getItem("currentUser") && JSON.stringify(currentUser) == '{}') {
+            setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
+            handleUser();
+        } else if (JSON.stringify(currentUser) != '{}' && (JSON.stringify(condominiumInfo) === '{}' || JSON.stringify(userInfo) === '{}')){
+            handleUser();
+        } else if (!localStorage.getItem("currentUser")) {
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("currentUser");
+            window.location.href = "/";
+        }
+    }, [currentUser]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        if (name.startsWith('contact') || name.startsWith('phone')) {
-            setCondominiumInfo((prev) => ({ ...prev, [name]: value }));
+    
+        if (name in condominiumInfo) {
+            setCondominiumInfo((prev) => ({
+                ...prev,
+                [name]: value,
+            }));
         } else {
-            setUserInfo((prev) => ({ ...prev, [name]: value }));
+            setUserInfo((prev) => ({
+                ...prev,
+                [name]: value,
+            }));
         }
-    };
+    };    
 
     const handleEditToggle = () => {
         setIsEditing(true);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            console.log("Informações salvas:", { userInfo, condominiumInfo });
+            const formData = {
+                "nome": userInfo.nome,
+                "cpf": userInfo.cpf,
+                "senha": localStorage.getItem("currentPassword"),
+                "telefone": userInfo.telefone,
+                "tipoDoUsuario": currentUser.tipoDoUsuario,
+                "bloco": condominiumInfo.bloco,
+                "apartamento": parseInt(condominiumInfo.apartamento),
+                "condominio": {
+                    "nome": condominiumInfo.condominioNome,
+                },
+            }
+            console.log("Informações salvas:", formData, userInfo.id);
+            const response = await axios.put(`/spring/usuarios/${userInfo.id}`,
+                formData,
+                {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              });
+            console.log(response.data);
             setIsEditing(false);
+            alert("Informações atualizadas com sucesso!");
+            window.location.href="/home"
         } catch (error) {
-            console.error("Erro ao salvar:", error);
+            if (error.response) {
+                console.error("API Error:", error.response);
+            } else if (error.request) {
+                console.error("No response received:", error.request);
+            } else {
+                console.error("Error during request setup:", error.message);
+            }
         }
     };
 
     const handleCancel = () => {
-        setIsEditing(false); // Sai do modo edição sem salvar
+        setIsEditing(false);
+        window.location.href="/home"
     };
 
     const formatLabel = (label) => {
         return label.replace(/_/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
     };
-
-    useEffect(() => {
-        console.log("isEditing atualizado:", isEditing);
-    }, [isEditing]);
 
     return (
         <>
@@ -61,7 +122,7 @@ export default function ProfilePage() {
                 <form className="profile-forms" onSubmit={handleSubmit}>
                     <h2>Informações Pessoais</h2>
                     <div className="fields-group">
-                        {Object.keys(userInfo).map((key, index) => (
+                        {Object.keys(userInfo).slice(-2).map((key, index) => (
                             <div key={index} className="field-container">
                                 <label htmlFor={key}>{formatLabel(key)}</label>
                                 <input
@@ -74,9 +135,19 @@ export default function ProfilePage() {
                                 />
                             </div>
                         ))}
-                    </div>
-                    <div className="emergency-contacts">
-                        <h2>Minha Casa</h2>
+                        {Object.keys(userInfo).slice(3, 4).map((key, index) => (
+                            <div key={index} className="field-container">
+                                <label htmlFor={key}>{formatLabel(key)}</label>
+                                <input
+                                    id={key}
+                                    name={key}
+                                    type={key === "age" ? "number" : "text"}
+                                    value={userInfo[key]}
+                                    onChange={handleChange}
+                                    disabled={true}
+                                />
+                            </div>
+                        ))}
                         {Object.keys(condominiumInfo).map((key, index) => (
                             <div key={index} className="field-container">
                                 <label htmlFor={key}>{formatLabel(key)}</label>
@@ -90,6 +161,7 @@ export default function ProfilePage() {
                                 />
                             </div>
                         ))}
+                        
                     </div>
                     <div className="buttons">
                         {isEditing ? (

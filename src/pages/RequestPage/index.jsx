@@ -4,23 +4,25 @@ import './style.css';
 import { FaArrowLeft } from "react-icons/fa6";
 import { collection, getDocs, query, orderBy, addDoc } from "firebase/firestore";
 import db from '../../services/firebaseConfig';
+import { jwtDecode } from 'jwt-decode';
 
 export default function RequestsPage() {
     const [selectedContact, setSelectedContact] = useState(null);
     const [message, setMessage] = useState("");
     const [contacts, setContacts] = useState([]);
     const messagesEndRef = useRef(null);
-    const [condoId, setCondoId] = useState('1');
+    const [condoId, setCondoId] = useState('argus');
+    const currentUserCpf = jwtDecode(localStorage.getItem("authToken")).sub;
 
     // Carrega os contatos do Firestore
     useEffect(() => {
-        const loadContacts = async (condoId) => {
-            const contactsRef = collection(db, `condominiuns/${condoId}/contacts`);
+        const loadContacts = async () => {
+            const contactsRef = collection(db, `contacts/${condoId}/contact`);
             const querySnapshot = await getDocs(contactsRef);
             const loadedContacts = await Promise.all(
                 querySnapshot.docs.map(async (doc) => {
                     const contactData = doc.data();
-                    const messagesRef = collection(db, `condominiuns/${condoId}/contacts/${doc.id}/messages`);
+                    const messagesRef = collection(db, `contacts/${condoId}/contact/${doc.id}/chats`);
                     const q = query(messagesRef, orderBy("timestamp"));
                     const messagesSnapshot = await getDocs(q);
                     const loadedMessages = messagesSnapshot.docs.map(messageDoc => messageDoc.data());
@@ -28,37 +30,44 @@ export default function RequestsPage() {
                     return {
                         id: doc.id,
                         ...contactData,
-                        messages: loadedMessages || [], // Garantir que 'messages' seja sempre um array
+                        messages: loadedMessages || [],
                     };
                 })
             );
             setContacts(loadedContacts);
         };
 
-        loadContacts(condoId);
+        loadContacts();
     }, [condoId]);
 
     const handleSelectContact = (contact) => {
         setSelectedContact(contact);
     };
 
-    const handleSendMessage = async (condoId) => {
+    const handleSendMessage = async () => {
         if (message.trim() !== "") {
+            // Definir um chatId único entre os dois contatos
+            const chatId = [currentUserCpf, selectedContact.cpf].sort().join("-");
+
             const newMessage = {
-                sender: "Você",
-                text: message,
+                senderName: JSON.parse(localStorage.getItem("currentUser")).nome,
+                senderCpf: jwtDecode(localStorage.getItem("authToken")).sub,
+                receiverCpf: selectedContact.cpf,
+                receiverName: selectedContact.name,
                 timestamp: Date.now(),
+                message: message,
+                chatId: chatId, // Identificador único para o chat
             };
-    
-            // Envia a mensagem para o Firestore
-            await addDoc(collection(db, `condominiuns/${condoId}/contacts/${selectedContact.id}/messages`), newMessage);
-    
+
+            // Envia a mensagem para o Firestore dentro do chat específico
+            await addDoc(collection(db, `contacts/${condoId}/contact/${selectedContact.id}/chats`), newMessage);
+
             // Atualiza o estado do contato selecionado
             setSelectedContact((prevState) => ({
                 ...prevState,
                 messages: [...prevState.messages, newMessage],
             }));
-    
+
             // Atualiza o estado da lista de contatos
             setContacts((prevContacts) =>
                 prevContacts.map((contact) =>
@@ -70,7 +79,7 @@ export default function RequestsPage() {
                         : contact
                 )
             );
-    
+
             setMessage(""); // Limpa o campo de mensagem
         }
     };
@@ -85,7 +94,7 @@ export default function RequestsPage() {
 
     const onKeyDown = (event) => {
         if (event.which === 13) {
-            handleSendMessage(condoId);
+            handleSendMessage();
         } else if (event.which === 27) {
             eraseField();
         }
@@ -98,19 +107,27 @@ export default function RequestsPage() {
                 <div className={`left-panel ${selectedContact ? 'hide' : ''}`}>
                     <h2>Contatos</h2>
                     <div className="contacts-list">
-                        {contacts.map((contact) => (
-                            <div
-                                key={contact.id}
-                                className={`contact-card ${selectedContact?.id === contact.id ? "selected" : ""}`}
-                                onClick={() => handleSelectContact(contact)}
-                            >
-                                <img className='img-perfil' src={contact.icon} alt={`${contact.name} icon`} />
-                                <div className="contact-info">
-                                    <h3>{contact.name}</h3>
-                                    <p>{contact.messages && contact.messages.length > 0 ? contact.messages[contact.messages.length - 1].text : "Sem mensagens ainda"}</p>
-                                </div>
-                            </div>
-                        ))}
+                        {contacts.map((contact) => {
+                            // Verificar se o CPF do contato é diferente do CPF do usuário
+                            if ((contact.cpf != currentUserCpf && contact.messages.length == 0) ||
+                                (contact.cpf != currentUserCpf && JSON.parse(localStorage.getItem("currentUser")).nome == contact.messages[0].senderName) ||
+                                (contact.messages && contact.messages.some(msg => msg.senderCpf === currentUserCpf || msg.receiverCpf === currentUserCpf))) {
+                                return (
+                                    <div
+                                        key={contact.id}
+                                        className={`contact-card ${selectedContact?.id === contact.id ? "selected" : ""}`}
+                                        onClick={() => handleSelectContact(contact)}
+                                    >
+                                        <img className='img-perfil' src={contact.icon} alt={`${contact.role} icon`} />
+                                        <div className="contact-info">
+                                            <h3>{contact.name == JSON.parse(localStorage.getItem("currentUser")).nome ? contact.messages[0].senderName : contact.name}</h3>
+                                            <p>{contact.messages && contact.messages.length > 0 ? contact.messages[contact.messages.length - 1].message : "Sem mensagens ainda"}</p>
+                                        </div>
+                                    </div>
+                                );
+                            }
+                            return null;
+                        })}
                     </div>
                 </div>
 
@@ -119,18 +136,22 @@ export default function RequestsPage() {
                         <div className="chat-window">
                             <div className='contact-title'>
                                 <button onClick={handleDeselectContact}><FaArrowLeft /></button>
-                                <h2>{selectedContact.name}</h2>
+                                <h2>{selectedContact.messages && selectedContact.messages.length > 0 ? (
+                                selectedContact.messages[0].senderCpf == currentUserCpf ?
+                                 selectedContact.messages[0].receiverName :
+                                  selectedContact.messages[0].senderName) :
+                                  ("Novo Chat")}</h2>
                             </div>
                             <div className="messages">
                                 {selectedContact.messages && selectedContact.messages.length > 0 ? (
-                                    selectedContact.messages.map((message, index) => (
+                                    selectedContact.messages.map((msg, index) => (
                                         <div
                                             key={index}
-                                            className={`message ${message.sender === "Você" ? "sent" : "received"}`}
+                                            className={`message ${msg.senderCpf == jwtDecode(localStorage.getItem("authToken")).sub ? "sent" : "received"}`}
                                         >
-                                            <p>{message.text}</p>
+                                            <p>{msg.message}</p>
                                             <span className="timestamp">
-                                                {new Date(message.timestamp).toLocaleTimeString()}
+                                                {new Date(msg.timestamp).toLocaleTimeString()}
                                             </span>
                                         </div>
                                     ))
@@ -147,7 +168,7 @@ export default function RequestsPage() {
                                     onChange={(e) => setMessage(e.target.value)}
                                     onKeyDown={onKeyDown}
                                 />
-                                <button onClick={() => {handleSendMessage(condoId)}}>Enviar</button>
+                                <button onClick={handleSendMessage}>Enviar</button>
                             </div>
                         </div>
                     ) : (

@@ -1,0 +1,150 @@
+@import url(../../variables.css);
+@import url(../../font-styles.css);
+
+.feedback-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: var(--background-foreground-color);
+  min-height: 90vh;
+}
+
+.feedback-page h1 {
+  margin: 2.5rem 0;
+  text-align: center;
+}
+
+.feedback-forms {
+  width: 90%; /* Reduzido para telas menores */
+  max-width: 1200px; /* Máximo para telas maiores */
+  margin: 20px auto;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--main-color);
+}
+
+/* Divisão em linhas para os 4 primeiros campos */
+.feedback-forms .pessoal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.feedback-forms input[type="text"],
+.feedback-forms input[type="email"],
+.feedback-forms input[type="tel"],
+.feedback-forms textarea {
+  padding: 0.5rem;
+  border: 0.5px solid #d0cfcf;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: var(--background-foreground-color);
+  width: 100%;
+}
+
+.feedback-forms textarea {
+  resize: none;
+  width: 100%; /* Garantir 100% de largura */
+}
+
+/* Estilo dos checkboxes */
+.feedback-forms fieldset {
+  margin-bottom: 20px;
+  border: none;
+}
+
+.feedback-forms legend {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--gray);
+  background-color: var(--light-blue);
+  border-radius: 50px;
+  padding: 0.25rem 1.5rem;
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 3 colunas */
+  gap: 10px; /* Espaçamento entre os elementos */
+}
+
+.feedback-forms input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* Botões de ação */
+.feedback-page .buttons {
+  display: flex;
+  flex-wrap: wrap; /* Flexível para telas menores */
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.feedback-page button {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.feedback-page button[type="submit"] {
+  background-color: var(--foreground-color);
+  color: var(--background-main-color);
+}
+
+.feedback-page button[type="submit"]:hover {
+  background-color: var(--web-orange-500);
+}
+
+.feedback-page button[type="reset"] {
+  background-color: var(--medium-blue);
+  color: var(--background-main-color);
+}
+
+.feedback-page button[type="reset"]:hover {
+  background-color: var(--medium-blue-hover);
+}
+
+@media (max-width: 768px) {
+  .feedback-page h1 {
+    font-size: 1rem;
+  }
+  .feedback-forms .pessoal {
+    grid-template-columns: 1fr;
+  }
+
+  .checkbox-group {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .feedback-page .buttons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkbox-group {
+    grid-template-columns: 1fr;
+  }
+
+  .feedback-forms {
+    padding: 15px;
+  }
+
+  .feedback-page button {
+    font-size: 12px; /* Ajusta tamanho do texto dos botões */
+  }
+}
+.feedback-forms input[type="text"]:focus,
+.feedback-forms input[type="email"]:focus,
+.feedback-forms input[type="tel"]:focus,
+.feedback-forms textarea:focus {
+  border: 1px solid var(--web-orange-500); /* Altere para a cor laranja desejada */
+  outline: none; /* Remove o contorno padrão do foco */
+}

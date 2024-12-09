@@ -20,6 +20,7 @@ export default function LoginPage() {
 
       if (response.status === 200) {
         localStorage.setItem("authToken", response.data.token);
+        localStorage.setItem("currentPassword", senha);
         window.location.href="/home";
       }
     } catch (error) {
@@ -69,12 +70,12 @@ export default function LoginPage() {
             />
 
             <div className="additional-options">
-              <div>
+              {/* <div>
                 <input type="checkbox" id="remember" name="remember" />
                 <label className="poppins-regular" htmlFor="remember">
                   Lembrar Senha
                 </label>
-              </div>
+              </div> */}
               <a href="/recovery">
                 <p>Esqueci minha senha</p>
               </a>

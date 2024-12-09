@@ -5,11 +5,10 @@ import HomeCardOutlined from "../../components/HomeCardOutlined";
 import HomeCardFilled from "../../components/HomeCardFilled";
 import HomeCardProfile from "../../components/HomeCardPerfil";
 
-import moradora from "/moradora.png";
 import inicioIcon from "../../assets/HomeIcons/inicio.svg";
 import manutencaoIcon from "../../assets/HomeIcons/manutencao.svg";
 import chatIcon from "../../assets/HomeIcons/chat.svg";
-import financeiroIcon from "../../assets/HomeIcons/financeiro.svg";
+import feedbackIcon from "../../assets/HomeIcons/financeiro.svg";
 import encomendasIcon from "../../assets/HomeIcons/encomendas.svg";
 import faqIcon from "../../assets/HomeIcons/faq.svg";
 import conflitosIcon from "../../assets/HomeIcons/conflitos.svg";
@@ -20,11 +19,6 @@ import regrasIcon from "../../assets/HomeIcons/regras.svg";
 import comunicadosIcon from "../../assets/HomeIcons/comunicados.svg";
 import apartamentoIcon from "../../assets/HomeIcons/apartamento.svg";
 import condominioIcon from "../../assets/HomeIcons/condominio.svg";
-
-import comunicado1 from "../../assets/ComunicadosImg/comunicado1.png";
-import comunicado2 from "../../assets/ComunicadosImg/comunicado2.png";
-import comunicado3 from "../../assets/ComunicadosImg/comunicado3.png";
-import comunicado4 from "../../assets/ComunicadosImg/comunicado4.png";
 
 import HomeCardComunicados from "../../components/HomeCardComunicados";
 
@@ -50,7 +44,7 @@ export default function HomePage() {
   const service_items = [
     { Icon: manutencaoIcon, Title: "Manutenção", Nav: "/upKeep" },
     { Icon: chatIcon, Title: "Solicitações", Nav: "/request" },
-    { Icon: financeiroIcon, Title: "Financeiro", Nav: "/financial" },
+    { Icon: feedbackIcon, Title: "Feedback", Nav: "/feedback" },
     { Icon: encomendasIcon, Title: "Encomendas", Nav: "/order" },
     { Icon: faqIcon, Title: "Dúvidas (FAQ)", Nav: "/faq" },
     { Icon: conflitosIcon, Title: "Conflitos", Nav: "/mediation" },
@@ -62,6 +56,16 @@ export default function HomePage() {
 
   const token = localStorage.getItem("authToken");
 
+  const formatPhoneNumber = (phone) => {
+    const newPhone = `${phone}`
+    return newPhone.slice(0,11).replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
+  }
+  
+  const formatCPF = (cpf) => {
+    const newCpf = `${cpf}`
+    return newCpf.slice(0,11).replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4");
+  }
+
   const handleUser = async (decoded) => {
     try {
       const response = await axios.get(`/spring/usuarios/cpf/${decoded.sub}`, {
@@ -69,8 +73,19 @@ export default function HomePage() {
           Authorization: `Bearer ${token}`,
         },
       });
-      setCurrentUser(response.data);
       localStorage.setItem("currentUser", JSON.stringify(response.data));
+      setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
+      setProfileInfo({
+        id: currentUser.id,
+        nome: currentUser.nome,
+        cpf: formatCPF(jwtDecode(token).sub),
+        senha: localStorage.getItem("currentPassword"),
+        bloco: currentUser.bloco,
+        apartamento: currentUser.apartamento,
+        condominioNome: currentUser.condominioNome,
+        telefone: formatPhoneNumber(currentUser.telefone),
+        tipoDoUsuario: currentUser.tipoDoUsuario,
+      });
     } catch (error) {
       if (error.response) {
         console.error("API Error:", error.response.data);
@@ -81,27 +96,6 @@ export default function HomePage() {
       }
     }
   };
-
-  useEffect(() => {
-    if (token) {
-      const decoded = jwtDecode(token);
-      handleUser(decoded);
-      setProfileInfo({
-        id: currentUser.id,
-        nome: currentUser.nome,
-        cpf: jwtDecode(token).sub,
-        senha: currentUser.senha,
-        bloco: currentUser.bloco,
-        apartamento: currentUser.apartamento,
-        condominioNome: currentUser.condominioNome,
-        telefone: currentUser.telefone,
-        tipoDoUsuario: currentUser.tipoDoUsuario,
-      });
-      loadingNews();
-    } else {
-      window.location.href = "/login";
-    }
-  }, []);
 
   const loadingNews = async () => {
     try {
@@ -115,6 +109,18 @@ export default function HomePage() {
       console.error("Erro ao carregar comunicados:", error);
     }
   };
+
+  useEffect(()=>{
+    if (token) {
+      const decoded = jwtDecode(token);
+      handleUser(decoded);
+      loadingNews();
+    } else {
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("currentUser");
+      window.location.href = "/";
+    }
+  },[comunicadosItems])
 
   return (
     <>
@@ -180,10 +186,9 @@ export default function HomePage() {
             />
           </div>
           <HomeCardProfile
-            Img={moradora}
+            Img={"https://cdn-icons-png.flaticon.com/512/847/847969.png"}
             UserName={profileInfo.nome}
-            Level="10"
-            XP="698"
+            Cargo={profileInfo.tipoDoUsuario}
             CPF={profileInfo.cpf}
             Cellphone={profileInfo.telefone}
           />

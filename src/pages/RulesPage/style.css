@@ -4,9 +4,22 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: center;
     width: 100%;
     min-height: 90vh;
     padding: 5rem 0;
+    background-color: var(--light-blue);
+}
+
+.rules-page .container{
+    background-color: var(--background-main-color);
+    width: 95%;
+    max-width: 1200px;
+    border-radius: 2rem;
+}
+
+.rules-page .title{
+    text-align: center;
 }
 
 .rules-search{

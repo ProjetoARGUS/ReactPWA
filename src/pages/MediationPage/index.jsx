@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import Header from '../../components/Header';
 import './style.css';
+import axios from 'axios';
 
 const genAI = new GoogleGenerativeAI("AIzaSyCrdvZOg_tiVVLbrsLDKStSe_t_ikAhLUI");
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
@@ -69,12 +70,44 @@ export default function MediationPage() {
         }
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Evita que a página seja recarregada ao enviar o formulário
+    
+        // Coleta os dados do formulário
+        const formData = new FormData(e.target);
+        const formValues = {};
+        formData.forEach((value, key) => {
+            formValues[key] = value;
+        });
+    
+        // Aqui você pode enviar os dados para uma API ou fazer algo com eles
+        const mediationData = {
+            "titulo": `${formValues["tipo-conflito"]} dia ${formValues["data-ocorrencia"]} - ${formValues["onde-ocorreu"]}`,
+            "descricao": `Conflito ${formValues.status} com urgencia ${formValues.urgencia}: ${formValues.description}`,
+            "tipo": "DESENTENDIMENTO",
+            "idUsuario": JSON.parse(localStorage.getItem("currentUser")).id,
+            "idArea": null
+        }
+        console.log("Dados enviados:", mediationData);
+        const response = await axios.post(`/spring/ocorrencias`,
+                mediationData,
+                {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                },
+              })
+        console.log(response.data)
+        // Limpa o formulário após o envio (opcional)
+        e.target.reset();
+    };
+    
+
     return (
         <>
             <Header />
             <section className="mediation-page">
                 <h1>Bem-vindo! Informe o seu ocorrido</h1>
-                <form className="mediation-forms" action="#" method="POST">
+                <form className="mediation-forms" onSubmit={handleSubmit} method="POST">
                     <div className="fields-group">
                         {fields.map((field, index) => (
                             <div key={index} className="field-container">

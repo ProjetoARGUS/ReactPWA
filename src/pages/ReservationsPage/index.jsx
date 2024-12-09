@@ -31,20 +31,20 @@ export default function ReservationsPage() {
 
   const fields = [
     {
-      Id: "location",
+      Id: "areaNome",
       Label: "Escolha o local da reserva*",
       Type: "select",
       Require: true,
       Options: areasCondominio, // Usar areasCondominio diretamente
     },
-    { Id: "date", Label: "Selecione a data*", Type: "date", Require: true },
+    { Id: "dataReserva", Label: "Selecione a data*", Type: "date", Require: true },
     {
-      Id: "time-inicio",
+      Id: "horaInicio",
       Label: "Selecione o inicio*",
       Type: "time",
       Require: true,
     },
-    { Id: "time-fim", Label: "Selecione o fim*", Type: "time", Require: true },
+    { Id: "horaFim", Label: "Selecione o fim*", Type: "time", Require: true },
   ];
 
   const [formData, setFormData] = useState({
@@ -59,13 +59,13 @@ export default function ReservationsPage() {
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [id]: value }));
-    if (id === "time-fim") {
+    if (id === "horaFim") {
       validateTimes(value);
     }
   };
 
   const validateTimes = (endTime) => {
-    if (formData["horaInicio"] && endTime <= formData["horaInicio"]) {
+    if (formData.horaInicio && endTime <= formData.horaFim) {
       setErrorMessage(
         "O horário de fim não pode ser menor que o horário de início."
       );
@@ -83,7 +83,26 @@ export default function ReservationsPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(`Reserva: ${JSON.stringify(formData)}`);
-    // Aqui você pode fazer o envio da reserva para o backend
+
+    try {
+      const response = await axios.post(
+        "/spring/reservas",
+        {
+          areaNome: formData.areaNome,
+          dataReserva: formatDate(formData.dataReserva),
+          horaInicio: formData.horaInicio,
+          horaFim: formData.horaFim,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
+        }
+      );
+      console.log("Resposta da API:", response.data);
+    } catch (error) {
+      console.error("Erro ao enviar comunicado:", error);
+    }
   };
 
   return (
@@ -109,11 +128,11 @@ export default function ReservationsPage() {
                     onChange={handleChange}
                   >
                     <option value="">Selecione</option>
-                    {field.Options.map((option, idx) => (
-                      <option key={idx} value={nome}>
-                        {nome}
+                    {areasCondominio != [] ? field.Options.map((option, idx) => (
+                      <option key={idx} value={option.nome}>
+                        {option.nome}
                       </option>
-                    ))}
+                    )): <></>}
                   </select>
                 ) : (
                   <input
@@ -150,8 +169,8 @@ export default function ReservationsPage() {
             <p>
               Período:{" "}
               <span className="reservation-info">
-                {formData["horaInicio"] && formData["horaFim"]
-                  ? `${formData["horaInicio"]} - ${formData["horaFim"]}`
+                {formData.horaInicio && formData.horaFim
+                  ? `${formData.horaInicio} - ${formData.horaFim}`
                   : "Nenhum período selecionado"}
               </span>
             </p>

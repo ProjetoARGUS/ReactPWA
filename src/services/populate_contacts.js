@@ -1,12 +1,12 @@
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
-import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
 
 // Configuração do Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyBCBU4Si1K7RjwoVWPLYZ-iq-_Vc-p_kg8",
     authDomain: "react-api-795a0.firebaseapp.com",
     projectId: "react-api-795a0",
-    storageBucket: "react-api-795a0.firebasestorage.app",
+    storageBucket: "react-api-795a0.appspot.com",
     messagingSenderId: "554318990847",
     appId: "1:554318990847:web:b264b91ce707e7d90babca"
 };
@@ -16,35 +16,75 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Função para adicionar um contato e suas mensagens
-const addContactAndMessagesToFirestore = async (condoId, contactData, messageData) => {
+const addContactWithMessages = async (condoName, contact, messages) => {
     try {
-        // Adiciona o contato à coleção de contatos do condomínio
-        const contactRef = await addDoc(collection(db, `condominiuns/${condoId}/contacts`), contactData);
+        // Adiciona o contato na coleção de contatos
+        const contactRef = await addDoc(collection(db, `contacts/${condoName}/contact`), contact);
 
-        // Verifica se há mensagem e a adiciona à subcoleção "messages"
-        if (messageData) {
-            await addDoc(collection(contactRef, "messages"), messageData);
-            console.log("Contato e mensagem adicionados com sucesso!");
-        } else {
-            console.log("Contato adicionado com sucesso!");
+        // Adiciona as mensagens na subcoleção "messages"
+        for (const message of messages) {
+            await addDoc(collection(contactRef, "messages"), message);
         }
+
+        console.log(`Contato ${contact.name} e mensagens adicionados com sucesso!`);
     } catch (e) {
         console.error("Erro ao adicionar documento: ", e);
     }
 };
 
-// Exemplo de dados de contato e mensagem
-const condoId = 1;
-const contactData = {
-    name: "André Felipe",
-    icon: "https://www.extraconsult.com.br/wp-content/uploads/2023/04/eletricista-de-manutencao.png",
-    role: "Funcionario"
-};
-const messageData = {
-    sender: "Maria",
-    text: "Oi, me avisaram que você estava me procurando!",
-    timestamp: Date.now()
-};
+// Dados de exemplo
+const condoName = "argus"; // Nome do condomínio
+const contacts = [
+    {
+        contact: {
+            name: "João Silva",
+            icon: "https://cdn-icons-png.flaticon.com/512/847/847969.png",
+            role: "Porteiro",
+            cpf: "12345678900",
+        },
+        messages: [
+            {
+                senderCpf: "12345676547",
+                senderName: "anonimo",
+                receiverCpf: "12345678900",
+                receiverName: "João Silva",
+                timestamp: Date.now(),
+                message: "Olá, preciso de ajuda para entrar no prédio.",
+            },
+        ],
+    },
+    {
+        contact: {
+            name: "Ana Santos",
+            icon: "https://cdn-icons-png.flaticon.com/512/847/847969.png",
+            role: "Síndica",
+            cpf: "11223344556",
+        },
+        messages: [
+            {
+                senderCpf: "12345676547",
+                senderName: "anonimo",
+                receiverCpf: "11223344556",
+                receiverName: "Ana Santos",
+                timestamp: Date.now(),
+                message: "Temos uma reunião marcada para hoje às 18h.",
+            },
+        ],
+    },
+    {
+        contact: {
+            name: "Pedro Lima",
+            icon: "https://cdn-icons-png.flaticon.com/512/847/847969.png",
+            role: "Subsíndico",
+            cpf: "99887766554",
+        },
+        messages: [],
+    },
+];
 
-// Chama a função para adicionar o contato e a mensagem
-addContactAndMessagesToFirestore(condoId, contactData);
+// Adiciona os contatos e mensagens ao Firestore
+(async () => {
+    for (const { contact, messages } of contacts) {
+        await addContactWithMessages(condoName, contact, messages);
+    }
+})();

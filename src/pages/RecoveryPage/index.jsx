@@ -2,47 +2,47 @@ import "./style.css";
 
 export default function RecoveryPage() {
   
-  const handleInput = (e) => { // Função para permitir apenas números e restringir a quantidade de dígitos para 11
+  // const handleInput = (e) => { // Função para permitir apenas números e restringir a quantidade de dígitos para 11
     
-    e.target.value = e.target.value.replace(/\D/g, ""); // Remove qualquer caractere não numérico
+  //   e.target.value = e.target.value.replace(/\D/g, ""); // Remove qualquer caractere não numérico
 
     
-    if (e.target.value.length > 11) {
-      e.target.value = e.target.value.slice(0, 11); // Limita a quantidade de caracteres a 11
-    }
+  //   if (e.target.value.length > 11) {
+  //     e.target.value = e.target.value.slice(0, 11); // Limita a quantidade de caracteres a 11
+  //   }
 
     
-    if (e.target.value.length <= 2) {
-      e.target.value = e.target.value.replace(/(\d{2})(\d{0,1})/, "($1) $2"); // Adiciona a formatação conforme o número de dígitos
-    } else if (e.target.value.length <= 6) {
-      e.target.value = e.target.value.replace(
-        /(\d{2})(\d{5})(\d{0,1})/,
-        "($1) $2-$3"
-      );
-    } else {
-      e.target.value = e.target.value.replace(
-        /(\d{2})(\d{5})(\d{4})/,
-        "($1) $2-$3"
-      );
-    }
-  };
+  //   if (e.target.value.length <= 2) {
+  //     e.target.value = e.target.value.replace(/(\d{2})(\d{0,1})/, "($1) $2"); // Adiciona a formatação conforme o número de dígitos
+  //   } else if (e.target.value.length <= 6) {
+  //     e.target.value = e.target.value.replace(
+  //       /(\d{2})(\d{5})(\d{0,1})/,
+  //       "($1) $2-$3"
+  //     );
+  //   } else {
+  //     e.target.value = e.target.value.replace(
+  //       /(\d{2})(\d{5})(\d{4})/,
+  //       "($1) $2-$3"
+  //     );
+  //   }
+  // };
 
   
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Função para verificar a quantidade de dígitos no telefone ao enviar o formulário
+  // const handleSubmit = (e) => {
+  //   e.preventDefault(); // Função para verificar a quantidade de dígitos no telefone ao enviar o formulário
 
-    const phoneNumber = e.target["phone-number"].value.replace(/\D/g, ""); // Remove caracteres não numéricos
+  //   const phoneNumber = e.target["phone-number"].value.replace(/\D/g, ""); // Remove caracteres não numéricos
 
    
-    if (phoneNumber.length !== 11) {
-      alert("Por favor, insira um número de telefone válido com 11 dígitos.");
-      return;  // Valida se o número de telefone tem exatamente 11 dígitos
-    }
+  //   if (phoneNumber.length !== 11) {
+  //     alert("Por favor, insira um número de telefone válido com 11 dígitos.");
+  //     return;  // Valida se o número de telefone tem exatamente 11 dígitos
+  //   }
 
     
-   alert("Número de telefone válido! Código de verificação enviado.");
-   window.location.href = '/recoveryKey';
-  }; // Aqui você pode realizar o envio do formulário
+  //  alert("Número de telefone válido! Código de verificação enviado.");
+  //  window.location.href = '/recoveryKey';
+  // }; // Aqui você pode realizar o envio do formulário
 
   return (
     <section className="recovery-page">
@@ -52,6 +52,12 @@ export default function RecoveryPage() {
           <h1 className="logo-name">ARGUS</h1>
         </div>
         <p className="description poppins-bold">
+          Para redefinir sua senha, entre em contato com os moderadores do app.
+          Enviaremos uma nova senha para continuar o processo. <br />
+          CONTATO: (81) 9xxxx-xxxx
+        </p>
+        <button className="submit-button" onClick={() => {window.location.href="/login"}}>Voltar para login</button>
+        {/* <p className="description poppins-bold">
           Para redefinir sua senha, informe seu número de telefone cadastrado.
           Enviaremos um código de verificação para continuar o processo.
         </p>
@@ -72,7 +78,8 @@ export default function RecoveryPage() {
           <button type="submit" className="submit-button">
             enviar
           </button>
-        </form>
+        </form> */}
+        
       </div>
     </section>
   );

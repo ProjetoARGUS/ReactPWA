@@ -67,33 +67,36 @@ export default function RulesPage() {
         <>
             <Header />
             <section className="rules-page">
-                <div className="rules-search">
-                    <div className="search">
-                        <input
-                            type="text"
-                            placeholder="Pesquisar"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        <button className="search-btn" onClick={() => setSearchTerm(searchTerm)}>
-                            <FaSearch />
-                        </button>
-                    </div>
-                </div>
-
-                <div className="dropdown-container">
-                    {filteredRules.map((rule, index) => (
-                        <div
-                            key={index}
-                            className={`dropdown ${openDropdown === index ? 'open' : ''}`}
-                            onClick={() => toggleDropdown(index)}
-                        >
-                            <div className="dropdown-header">{rule.title}</div>
-                            {openDropdown === index && (
-                                <div className="dropdown-content">{rule.content}</div>
-                            )}
+                <div className="container">
+                    <h1 className="title">Regras do Condomínio</h1>
+                    <div className="rules-search">
+                        <div className="search">
+                            <input
+                                type="text"
+                                placeholder="Pesquisar"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                            <button className="search-btn" onClick={() => setSearchTerm(searchTerm)}>
+                                <FaSearch />
+                            </button>
                         </div>
-                    ))}
+                    </div>
+
+                    <div className="dropdown-container">
+                        {filteredRules.map((rule, index) => (
+                            <div
+                                key={index}
+                                className={`dropdown ${openDropdown === index ? 'open' : ''}`}
+                                onClick={() => toggleDropdown(index)}
+                            >
+                                <div className="dropdown-header">{rule.title}</div>
+                                {openDropdown === index && (
+                                    <div className="dropdown-content">{rule.content}</div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
         </>

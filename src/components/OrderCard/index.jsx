@@ -4,9 +4,6 @@ import OrderIcon from '../../assets/HomeIcons/encomendas.svg';
 export default function OrderCard({ order }) {
     return (
         <div className="order-card">
-            <div className="img-card">
-                <img src={order.image} alt={`Imagem da encomenda ${order.id}`} />
-            </div>
             <div className="order-code">
                 <div className="icon-placeholder">
                     <img src={OrderIcon} alt="icon-placeholder"/>
@@ -23,7 +20,7 @@ export default function OrderCard({ order }) {
                 </p>
                 <p>
                     <strong>Destinatário:</strong>
-                    <span>{order.recipient}</span>
+                    <span>{JSON.parse(localStorage.getItem("currentUser")).nome}</span>
                 </p>
                 <p>
                     <strong>Número de registro:</strong>
@@ -36,6 +33,10 @@ export default function OrderCard({ order }) {
                 <p>
                     <strong>Recebido por:</strong>
                     <span>{order.receivedBy}</span>
+                </p>
+                <p>
+                    <strong>Descrição:</strong>
+                    <span>{order.description}</span>
                 </p>
             </div>
         </div>

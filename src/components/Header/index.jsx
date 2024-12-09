@@ -22,13 +22,14 @@ export default function Header() {
             </div>
           </a>
           <div className="icons">
-            <button onClick={toggleMenu} className="notification-button">
+            {/* <button onClick={toggleMenu} className="notification-button">
               <img src={notificacaoIcon} alt="Notificações" />
-            </button>
+            </button> */}
             <button
               onClick={() => {
                 localStorage.removeItem("authToken");
-                window.location.href = "/login";
+                localStorage.removeItem("currentUser");
+                window.location.href = "/";
               }}
               className="logout-button"
             >

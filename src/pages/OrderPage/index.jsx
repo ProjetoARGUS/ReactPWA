@@ -1,89 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import db from "../../services/firebaseConfig";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import Header from "../../components/Header";
 import OrderCard from "../../components/OrderCard";
-import gateIcon from "../../assets/gateIcon.png";
-import Order1 from "../../assets/OrderImg/order1.svg";
-import Order2 from "../../assets/OrderImg/order2.svg";
-import Order3 from "../../assets/OrderImg/order3.svg";
 import "./style.css";
 
 export default function OrderPage() {
   const [orderSend, setOrderSend] = useState(false);
-  const orders = [
-    {
-      id: 123456,
-      image: Order1,
-      type: "Pacote",
-      recipient: "Neide da Silva",
-      registerNumber: "Não informado",
-      receivedTime: "Segunda-feira, 17:32",
-      receivedBy: "Ferdinando Lima",
-    },
-    {
-      id: 654321,
-      image: Order2,
-      type: "Pacote",
-      recipient: "Neide da Silva",
-      registerNumber: "Não informado",
-      receivedTime: "Quinta-feira, 10:20",
-      receivedBy: "Ferdinando Lima",
-    },
-    {
-      id: 148952,
-      image: Order3,
-      type: "Pacote",
-      recipient: "Neide da Silva",
-      registerNumber: "Não informado",
-      receivedTime: "Quarta-feira, 13:00",
-      receivedBy: "Robson Barbosa",
-    },
-    {
-      id: 654321,
-      image: Order2,
-      type: "Pacote",
-      recipient: "Neide da Silva",
-      registerNumber: "Não informado",
-      receivedTime: "Quinta-feira, 10:20",
-      receivedBy: "Ferdinando Lima",
-    },
-    {
-      id: 148952,
-      image: Order3,
-      type: "Pacote",
-      recipient: "Neide da Silva",
-      registerNumber: "Não informado",
-      receivedTime: "Quarta-feira, 13:00",
-      receivedBy: "Robson Barbosa",
-    },
-    {
-      id: 654321,
-      image: Order2,
-      type: "Pacote",
-      recipient: "Neide da Silva",
-      registerNumber: "Não informado",
-      receivedTime: "Quinta-feira, 10:20",
-      receivedBy: "Ferdinando Lima",
-    },
-    {
-      id: 148952,
-      image: Order3,
-      type: "Pacote",
-      recipient: "Neide da Silva",
-      registerNumber: "Não informado",
-      receivedTime: "Quarta-feira, 13:00",
-      receivedBy: "Robson Barbosa",
-    },
-  ];
+  const [orders, setOrders] = useState([]);
+  const [formData, setFormData] = useState({});
 
   const fields = [
     {
-      Id: "reservation-code",
-      Label: "Código de retirada",
-      Type: "text",
-      Require: true,
-    },
-    {
-      Id: "record-number",
+      Id: "registerNumber",
       Label: "Número de registro",
       Type: "text",
       Require: true,
@@ -96,9 +25,9 @@ export default function OrderPage() {
       Options: ["Documento", "Pacote", "Outro"],
     },
     {
-      Id: "date",
+      Id: "receivedTime",
       Label: "Data do recebimento",
-      Type: "date",
+      Type: "time",
       Require: true,
     },
     {
@@ -108,22 +37,29 @@ export default function OrderPage() {
       Require: true,
     },
     {
-      Id: "received-by",
+      Id: "receivedBy",
       Label: "Recebido por",
       Type: "text",
       Require: true,
     },
   ];
 
-  const [formData, setFormData] = useState({
-    reservation_code: "",
-    record_number: "",
-    type: "",
-    date: "",
-    recipient: "",
-    received_by: "",
-    description: "",
-  });
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "orders"));
+        const fetchedOrders = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setOrders(fetchedOrders);
+      } catch (error) {
+        console.error("Erro ao carregar encomendas:", error);
+      }
+    };
+
+    fetchOrders();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -133,18 +69,12 @@ export default function OrderPage() {
     }));
   };
 
-  const [isChatOpen, setIsChatOpen] = useState(false);
-
-  const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
-  };
-
-  const submitSend = () => {
-
-  };
-
-  const resetSend = () => {
-    setFormData({
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await addDoc(collection(db, "orders"), formData);
+      alert("Encomenda cadastrada com sucesso!");
+      setFormData({
         reservation_code: "",
         record_number: "",
         type: "",
@@ -153,46 +83,25 @@ export default function OrderPage() {
         received_by: "",
         description: "",
       });
-      setOrderSend(!orderSend);
+      setOrderSend(false);
+    } catch (error) {
+      console.error("Erro ao cadastrar encomenda:", error);
+      alert("Erro ao cadastrar encomenda. Tente novamente.");
+    }
+  };
+
+  const resetSend = () => {
+    setFormData({});
+    setOrderSend(false);
   };
 
   return (
     <>
       <Header />
       <div className="order-page">
-        <div className="left-sidebar">
-          <div className="chat-icon" onClick={toggleChat}>
-            <img
-              src={gateIcon}
-              className="gate-icon"
-              alt="Chat com a portaria"
-            />
-            <p className="chat-text">Portaria</p>
-          </div>
-          {isChatOpen && (
-            <div className="chat-box">
-              <div className="chat-header">
-                <h2 className="poppins-bold">Chat com a portaria</h2>
-                <button className="close-chat" onClick={toggleChat}>
-                  X
-                </button>
-              </div>
-              <div className="chat-body">
-                <p><strong>Portaria:</strong> Como posso ajudar?</p>
-                <p><strong>Você:</strong> Olá, tenho uma dúvida sobre minha encomenda.</p>
-              </div>
-              <input
-                type="text"
-                className="chat-input"
-                placeholder="Digite sua mensagem..."
-              />
-            </div>
-          )}
-        </div>
-
         <div className="main-content">
             {orderSend ? (
-              <form className="order-forms" action="#" method="POST">
+              <form className="order-forms" onSubmit={handleSubmit} method="POST">
                 <div className="fields-group">
                   {fields.map((field, index) => (
                     <div key={index} className="field-container">
@@ -205,7 +114,7 @@ export default function OrderPage() {
                           value={formData[field.Id]}
                           onChange={handleChange}
                         >
-                          <option value="" disabled>
+                          <option value="Desconhecido">
                             Selecione
                           </option>
                           {field.Options.map((option, idx) => (
@@ -249,12 +158,17 @@ export default function OrderPage() {
                 <>
                     <div>
                         <h1 className="page-title">Bem-vindo! Aqui estará registrado a entrega de suas encomendas.</h1>
-                        <button className="register-button" onClick={() => {setOrderSend(!orderSend);}}>Cadastrar Nova Encomenda</button>
+                        {JSON.parse(localStorage.getItem("currentUser")).tipoDoUsuario != "MORADOR" ? (
+                          <button className="register-button" onClick={() => {setOrderSend(!orderSend);}}>Cadastrar Nova Encomenda</button>
+                        ) : (<></>)
+                      }
                     </div>
                     <main className="order-list">
-                        {orders.map((order, index) => (
+                        {orders.length > 0 ? (
+                          orders.map((order, index) => (
                             <OrderCard key={index} order={order} />
-                        ))}
+                        ))
+                        ):(<p>Nenhuma encomenda</p>)}
                     </main>
                 </>
             )}

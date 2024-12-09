@@ -11,11 +11,11 @@ export default function NewsPage() {
     try {
       const response = await axios.get("/spring/comunicado", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("authToken")}`, // Adicione este cabeçalho, se necessário
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
         },
       });
-      setComunicadosItems(response.data); // Atualiza o estado com os dados da API
-      console.log("Dados carregados:", response.data); // Mostra os dados carregados no console
+      setComunicadosItems(response.data);
+      console.log("Dados carregados:", response.data);
     } catch (error) {
       console.error("Erro ao carregar comunicados:", error);
     }
@@ -115,12 +115,14 @@ export default function NewsPage() {
           ) : (
             <>
               <h1>Bem-vindo! Aqui você encontrará informações importantes</h1>
-              <button
+              {JSON.parse(localStorage.getItem("currentUser")).tipoDoUsuario != "MORADOR" ? (
+                <button
                 className="register-button"
                 onClick={() => setNewsSend(true)}
               >
                 Cadastrar Novo Comunicado
-              </button>
+              </button>)  : (<></>)}
+
               <div className="news-list">
                 {comunicadosItems
                   .slice()

@@ -1,10 +1,26 @@
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import "./style.css";
 import TextFieldInput from "../TextFieldInput";
 
-export default function AssemblyForms({ FormType, Inputs }) {
+export default function AssemblyForms({ Inputs, OnSubmit }) {
+  const [formValues, setFormValues] = useState(
+    Inputs.reduce((acc, input) => ({ ...acc, [input.Id]: "" }), {})
+  );
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormValues((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    OnSubmit(formValues); // Passa os valores do formulário ao OnSubmit
+  };
+
   return (
     <div className="assembly-forms">
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <div className="inputs-container">
           {Inputs.map((input, index) =>
             input.Type !== "text" ? (
@@ -16,6 +32,8 @@ export default function AssemblyForms({ FormType, Inputs }) {
                     name={input.Id}
                     id={input.Id}
                     required={input.Require}
+                    value={formValues[input.Id]}
+                    onChange={handleInputChange}
                   />
                 </div>
               ) : (
@@ -25,6 +43,8 @@ export default function AssemblyForms({ FormType, Inputs }) {
                     name={input.Id}
                     id={input.Id}
                     required={input.Require}
+                    value={formValues[input.Id]}
+                    onChange={handleInputChange}
                   >
                     <option value="">Selecione uma opção</option>
                     {input.Options &&
@@ -44,13 +64,21 @@ export default function AssemblyForms({ FormType, Inputs }) {
                 </div>
               )
             ) : (
-              <TextFieldInput key={index} Id={input.Id} Label={input.Label} />
+              <TextFieldInput
+                key={index}
+                Id={input.Id}
+                Label={input.Label}
+                Value={formValues[input.Id]}
+                OnChange={handleInputChange}
+              />
             )
           )}
         </div>
         <div className="form-buttons">
           <button type="submit">Enviar</button>
-          <button type="reset">Limpar</button>
+          <button type="reset" onClick={() => setFormValues(
+            Inputs.reduce((acc, input) => ({ ...acc, [input.Id]: "" }), {})
+          )}>Limpar</button>
         </div>
       </form>
     </div>
