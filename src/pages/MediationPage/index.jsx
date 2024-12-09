@@ -90,7 +90,7 @@ export default function MediationPage() {
         }
         console.log("Dados enviados:", mediationData);
         try {
-            const response = await axios.post(`https://18.228.153.53:8080/ocorrencias`,
+            const response = await axios.post(`http://18.228.153.53:8080/ocorrencias`,
                 mediationData,
                 {
                 headers: {

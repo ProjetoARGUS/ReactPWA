@@ -33,7 +33,7 @@ export default function AssemblyPage() {
     const getObras = async () => {
         try {
             const response = await axios.get(
-                "https://18.228.153.53:8080/sessaoVotacao",
+                "http://18.228.153.53:8080/sessaoVotacao",
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -56,7 +56,7 @@ export default function AssemblyPage() {
         };
         try {
             const response = await axios.post(
-                "https://18.228.153.53:8080/sessaoVotacao",
+                "http://18.228.153.53:8080/sessaoVotacao",
                 obrasData,
                 {
                     headers: {
@@ -82,7 +82,7 @@ export default function AssemblyPage() {
         };
         try {
             const response = await axios.post(
-                "https://18.228.153.53:8080/comunicado",
+                "http://18.228.153.53:8080/comunicado",
                 newItem,
                 {
                     headers: {

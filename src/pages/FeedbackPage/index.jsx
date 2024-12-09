@@ -24,7 +24,7 @@ export default function FeedbackPage() {
         console.log("Dados enviados:", feedbackData);
 
         try {
-            const response = await axios.post(`https://18.228.153.53:8080/ocorrencias`, feedbackData, {
+            const response = await axios.post(`http://18.228.153.53:8080/ocorrencias`, feedbackData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("authToken")}`,
                 },
