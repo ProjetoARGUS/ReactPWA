@@ -89,7 +89,8 @@ export default function MediationPage() {
             "idArea": null
         }
         console.log("Dados enviados:", mediationData);
-        const response = await axios.post(`/spring/ocorrencias`,
+        try {
+            const response = await axios.post(`/spring/ocorrencias`,
                 mediationData,
                 {
                 headers: {
@@ -97,6 +98,12 @@ export default function MediationPage() {
                 },
               })
         console.log(response.data)
+        alert("Mediação de conflitos solicitada!")
+        window.location.href="/home"
+        } catch (error) {
+            console.log(error);
+            alert("Mediação não solicitada!")
+        }
         // Limpa o formulário após o envio (opcional)
         e.target.reset();
     };

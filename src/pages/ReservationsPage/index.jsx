@@ -59,19 +59,6 @@ export default function ReservationsPage() {
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [id]: value }));
-    if (id === "horaFim") {
-      validateTimes(value);
-    }
-  };
-
-  const validateTimes = (endTime) => {
-    if (formData.horaInicio && endTime <= formData.horaFim) {
-      setErrorMessage(
-        "O horário de fim não pode ser menor que o horário de início."
-      );
-    } else {
-      setErrorMessage("");
-    }
   };
 
   const formatDate = (date) => {
@@ -100,8 +87,11 @@ export default function ReservationsPage() {
         }
       );
       console.log("Resposta da API:", response.data);
+      alert("Reserva feita com sucesso!")
+      window.location.href="/home"
     } catch (error) {
       console.error("Erro ao enviar comunicado:", error);
+      alert("Erro ao fazer reserva")
     }
   };
 

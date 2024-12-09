@@ -32,6 +32,7 @@ export default function LoginPage() {
       } else {
         setErrorMessage("Erro ao conectar com o servidor. Tente novamente mais tarde.");
       }
+      alert(errorMessage)
     }
   };
   return (

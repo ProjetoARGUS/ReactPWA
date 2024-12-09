@@ -65,9 +65,11 @@ export default function AssemblyPage() {
                 }
             );
             console.log("Resposta da API:", response.data);
-            alert("Obra enviada");
+            alert("Proposta de obra enviada!");
+            window.location.href="/home"
         } catch (error) {
             console.error("Erro ao enviar obra:", error);
+            alert("Erro ao enviar proposta de obra!")
         }
     };
 
@@ -81,7 +83,7 @@ export default function AssemblyPage() {
         try {
             const response = await axios.post(
                 "/spring/comunicado",
-                newItem, // Corpo da requisição
+                newItem,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("authToken")}`,
@@ -89,10 +91,11 @@ export default function AssemblyPage() {
                 }
             );
             console.log("Resposta da API:", response.data);
-            alert("Reunião enviada");
-            window.location.href='/home'; // Redirect to home after sending
+            alert("Reunião criada e comunicada aos moradores!");
+            window.location.href='/home';
         } catch (error) {
             console.error("Erro ao enviar reunião:", error);
+            alert("Erro ao enviar reunião")
         }
     };
 

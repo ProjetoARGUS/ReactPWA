@@ -58,8 +58,11 @@ export default function UpKeepPage() {
                 },
             });
             console.log("Resposta do servidor:", response.data);
+            alert("Manutenção solicitada!");
+            window.location.href="/home";
         } catch (error) {
             console.error("Erro ao enviar os dados:", error);
+            alert("Erro ao solicitar manutenção!");
         }
 
         // Limpa o formulário após o envio
@@ -71,7 +74,7 @@ export default function UpKeepPage() {
         <>
             <Header />
             <section className="upkeep-page">
-                <h1>Bem-vindo! Como posso ajudá-lo(a) hoje?</h1>
+                <h1>Bem-vindo! Solicite sua manutenção</h1>
                 <form className='upkeep-forms' onSubmit={handleSubmit} method="POST">
                     <div className="pessoal">
                         <TextFieldInput

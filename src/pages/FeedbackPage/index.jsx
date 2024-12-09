@@ -30,8 +30,11 @@ export default function FeedbackPage() {
                 },
             });
             console.log("Resposta do servidor:", response.data);
+            alert("Feedback enviado com sucesso!")
+            window.location.href="/home"
         } catch (error) {
             console.error("Erro ao enviar os dados:", error);
+            alert("Falha ao enviar Feedback!")
         }
 
         e.target.reset();

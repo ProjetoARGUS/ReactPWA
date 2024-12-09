@@ -58,8 +58,11 @@ export default function NewsPage() {
         }
       );
       console.log("Resposta da API:", response.data);
+      alert("Comunicado criado com sucesso!")
+      window.location.href="/home"
     } catch (error) {
       console.error("Erro ao enviar comunicado:", error);
+      alert("Erro ao criar comunicado!")
     }
     resetSend();
   };
