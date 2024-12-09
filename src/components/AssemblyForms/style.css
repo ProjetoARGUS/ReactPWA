@@ -18,6 +18,7 @@
 .assembly-forms input[type="email"],
 .assembly-forms input[type="tel"],
 .assembly-forms input[type="date"],
+.assembly-forms input[type="time"],
 .assembly-forms textarea,
 .assembly-forms select {
     padding: 0.5rem;
@@ -32,6 +33,7 @@
 .assembly-forms input[type="email"]:focus,
 .assembly-forms input[type="tel"]:focus,
 .assembly-forms input[type="date"]:focus,
+.assembly-forms input[type="time"]:focus,
 .assembly-forms textarea:focus,
 .assembly-forms select:focus {
     border: 1px solid var(--web-orange-500); /* Altere para a cor laranja desejada */

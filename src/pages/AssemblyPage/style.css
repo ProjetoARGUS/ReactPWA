@@ -3,7 +3,7 @@
 .assembly-page {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     min-height: 90vh;
     background-color: var(--background-foreground-color);
@@ -18,12 +18,15 @@
     border: 1px solid var(--main-color);
     width: 90%;
     max-width: 1200px;
+    padding: 1.5rem;
 }
 
 .assembly-buttons {
     display: flex;
     justify-content: center;
     gap: 1rem;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .assembly-buttons button {
@@ -36,6 +39,9 @@
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.2s ease, background-color 0.3s ease;
+    flex: 1 1 auto;
+    min-width: 200px;
+    max-width: 300px;
 }
 
 .assembly-buttons button:hover {
@@ -43,13 +49,71 @@
     transform: scale(1.05);
 }
 
-@media (max-width: 768px) {
-    .assembly-content h1 {
-        font-size: 1.5rem;
+.obras-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.obras-card {
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.obras-card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.obras-card-description {
+    font-size: 14px;
+    color: #666;
+    margin: 10px 0;
+}
+
+.obras-card-dates p {
+    font-size: 14px;
+    color: #333;
+    margin: 5px 0;
+}
+
+.obras-card-dates strong {
+    color: #007BFF;
+}
+
+@media (max-width: 1024px) {
+    .assembly-buttons {
+        flex-direction: row;
+        gap: 1rem;
     }
 
-    .assembly-content p {
-        font-size: 0.9rem;
+    .assembly-buttons button {
+        width: auto;
+        flex-grow: 1;
+    }
+
+    .obras-card {
+        width: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .assembly-page {
+        padding: 1.5rem;
+    }
+
+    .assembly-content {
+        padding: 1rem;
     }
 
     .assembly-buttons {
@@ -58,6 +122,34 @@
     }
 
     .assembly-buttons button {
-        width: 100%; 
+        width: 100%;
+        min-width: unset;
+    }
+
+    .obras-card {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .obras-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .obras-card-title {
+        font-size: 16px;
+    }
+
+    .obras-card-description,
+    .obras-card-dates p {
+        font-size: 12px;
+    }
+
+    .assembly-buttons button {
+        padding: 0.75rem;
+        font-size: 0.9rem;
     }
 }

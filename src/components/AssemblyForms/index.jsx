@@ -24,11 +24,11 @@ export default function AssemblyForms({ Inputs, OnSubmit }) {
         <div className="inputs-container">
           {Inputs.map((input, index) =>
             input.Type !== "text" ? (
-              input.Type === "date" ? (
+              input.Type !== "select" ? (
                 <div key={index}>
                   <label htmlFor={input.Id}>{input.Label}</label>
                   <input
-                    type="date"
+                    type={input.Type}
                     name={input.Id}
                     id={input.Id}
                     required={input.Require}
@@ -76,9 +76,11 @@ export default function AssemblyForms({ Inputs, OnSubmit }) {
         </div>
         <div className="form-buttons">
           <button type="submit">Enviar</button>
-          <button type="reset" onClick={() => setFormValues(
+          <button type="reset" onClick={() => {setFormValues(
             Inputs.reduce((acc, input) => ({ ...acc, [input.Id]: "" }), {})
-          )}>Limpar</button>
+          );
+          window.location.href="/home"
+        }}>Limpar</button>
         </div>
       </form>
     </div>

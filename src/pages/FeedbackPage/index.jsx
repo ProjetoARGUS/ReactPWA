@@ -41,7 +41,7 @@ export default function FeedbackPage() {
         <>
             <Header />
             <section className="feedback-page">
-                <h1>Bem-vindo! Como posso ajudá-lo(a) hoje?</h1>
+                <h1>Bem-vindo! Aqui você pode opinar sobre seu condomínio ou app!</h1>
                 <form className='feedback-forms' onSubmit={handleSubmit} method="POST">
                     <div className="pessoal">
                         <TextFieldInput

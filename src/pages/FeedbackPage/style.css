@@ -4,7 +4,7 @@
 .feedback-page {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: start;
   background-color: var(--background-foreground-color);
   min-height: 90vh;
 }
