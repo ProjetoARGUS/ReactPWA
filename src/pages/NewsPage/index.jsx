@@ -9,7 +9,7 @@ export default function NewsPage() {
 
   const loading = async () => {
     try {
-      const response = await axios.get("http://18.228.153.53:8080/comunicado", {
+      const response = await axios.get("https://18.228.153.53:8080/comunicado", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`,
         },
@@ -49,7 +49,7 @@ export default function NewsPage() {
     console.log(newItem);
     try {
       const response = await axios.post(
-        "http://18.228.153.53:8080/comunicado",
+        "https://18.228.153.53:8080/comunicado",
         newItem, // Corpo da requisição
         {
           headers: {

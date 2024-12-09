@@ -83,7 +83,7 @@ export default function ProfilePage() {
                 },
             }
             console.log("Informações salvas:", formData, userInfo.id);
-            const response = await axios.put(`http://18.228.153.53:8080/usuarios/${userInfo.id}`,
+            const response = await axios.put(`https://18.228.153.53:8080/usuarios/${userInfo.id}`,
                 formData,
                 {
                 headers: {

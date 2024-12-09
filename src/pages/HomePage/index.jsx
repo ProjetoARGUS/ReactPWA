@@ -68,7 +68,7 @@ export default function HomePage() {
 
   const handleUser = async (decoded) => {
     try {
-      const response = await axios.get(`http://18.228.153.53:8080/usuarios/cpf/${decoded.sub}`, {
+      const response = await axios.get(`https://18.228.153.53:8080/usuarios/cpf/${decoded.sub}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -99,7 +99,7 @@ export default function HomePage() {
 
   const loadingNews = async () => {
     try {
-      const response = await axios.get("http://18.228.153.53:8080/comunicado", {
+      const response = await axios.get("https://18.228.153.53:8080/comunicado", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`, // Adicione este cabeçalho, se necessário
         },
