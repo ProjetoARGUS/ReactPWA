@@ -474,7 +474,7 @@ export default defineConfig({
     host: true,
     proxy:{
       '/spring': {
-        target: 'http://18.228.153.53:8080/',
+        target: 'http://18.188.81.126:8080/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/spring/, ''), // Mantenha a rota da API
       },

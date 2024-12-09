@@ -52,7 +52,7 @@ export default function UpKeepPage() {
         console.log("Dados enviados:", upKeepData);
 
         try {
-            const response = await axios.post(`http://18.228.153.53:8080/ocorrencias`, upKeepData, {
+            const response = await axios.post(`/spring/ocorrencias`, upKeepData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("authToken")}`,
                 },
