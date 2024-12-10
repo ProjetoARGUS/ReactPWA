@@ -2,7 +2,7 @@
     "rewrites": [
       {
         "source": "/spring/:path*", 
-        "destination": "http://18.228.153.53:8080/:path*" 
+        "destination": "http://18.188.81.126:8080/:path*" 
       }
     ]
   }
