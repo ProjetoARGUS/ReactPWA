@@ -13,7 +13,7 @@ export default function LoginPage() {
     console.log({cpf, senha})
   
     try {
-      const response = await axios.post("/spring/auth/login", {
+      const response = await axios.post("https://argus-api.xyz/auth/login", {
         "cpf": cpf,
         "password": senha,
       });

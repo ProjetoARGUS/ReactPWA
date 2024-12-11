@@ -11,6 +11,9 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,jsx,css,html,ico,png,svg}']
       },
+      devOptions: {
+        enabled: true, // Ativa o PWA no ambiente de desenvolvimento
+      },
       includeAssets: ['favicon.svg', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
         name: 'ARGUS',
