@@ -90,7 +90,7 @@ export default function MediationPage() {
         }
         console.log("Dados enviados:", mediationData);
         try {
-            const response = await axios.post(`/spring/ocorrencias`,
+            const response = await axios.post(`https://argus-api.xyz/ocorrencias`,
                 mediationData,
                 {
                 headers: {

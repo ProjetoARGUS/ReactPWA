@@ -9,7 +9,7 @@ export default function NewsPage() {
 
   const loading = async () => {
     try {
-      const response = await axios.get("/spring/comunicado", {
+      const response = await axios.get("https://argus-api.xyz/comunicado", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`,
         },
@@ -49,7 +49,7 @@ export default function NewsPage() {
     console.log(newItem);
     try {
       const response = await axios.post(
-        "/spring/comunicado",
+        "https://argus-api.xyz/comunicado",
         newItem, // Corpo da requisição
         {
           headers: {

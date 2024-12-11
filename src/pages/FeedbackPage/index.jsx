@@ -24,7 +24,7 @@ export default function FeedbackPage() {
         console.log("Dados enviados:", feedbackData);
 
         try {
-            const response = await axios.post(`/spring/ocorrencias`, feedbackData, {
+            const response = await axios.post(`https://argus-api.xyz/ocorrencias`, feedbackData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("authToken")}`,
                 },

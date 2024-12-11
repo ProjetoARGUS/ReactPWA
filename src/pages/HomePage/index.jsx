@@ -68,7 +68,7 @@ export default function HomePage() {
 
   const handleUser = async (decoded) => {
     try {
-      const response = await axios.get(`/spring/usuarios/cpf/${decoded.sub}`, {
+      const response = await axios.get(`https://argus-api.xyz/usuarios/cpf/${decoded.sub}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -99,7 +99,7 @@ export default function HomePage() {
 
   const loadingNews = async () => {
     try {
-      const response = await axios.get("/spring/comunicado", {
+      const response = await axios.get("https://argus-api.xyz/comunicado", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`, // Adicione este cabeçalho, se necessário
         },

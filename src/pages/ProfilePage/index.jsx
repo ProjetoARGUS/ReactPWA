@@ -83,7 +83,7 @@ export default function ProfilePage() {
                 },
             }
             console.log("Informações salvas:", formData, userInfo.id);
-            const response = await axios.put(`/spring/usuarios/${userInfo.id}`,
+            const response = await axios.put(`https://argus-api.xyz/usuarios/${userInfo.id}`,
                 formData,
                 {
                 headers: {

@@ -52,7 +52,7 @@ export default function UpKeepPage() {
         console.log("Dados enviados:", upKeepData);
 
         try {
-            const response = await axios.post(`/spring/ocorrencias`, upKeepData, {
+            const response = await axios.post(`https://argus-api.xyz/ocorrencias`, upKeepData, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("authToken")}`,
                 },

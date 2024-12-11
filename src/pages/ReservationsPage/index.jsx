@@ -11,7 +11,7 @@ export default function ReservationsPage() {
   // Função para carregar as áreas comuns
   const loadingAreas = async () => {
     try {
-      const response = await axios.get("/spring/areasComuns", {
+      const response = await axios.get("https://argus-api.xyz/areasComuns", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("authToken")}`,
         },
@@ -73,7 +73,7 @@ export default function ReservationsPage() {
 
     try {
       const response = await axios.post(
-        "/spring/reservas",
+        "https://argus-api.xyz/reservas",
         {
           areaNome: formData.areaNome,
           dataReserva: formatDate(formData.dataReserva),
